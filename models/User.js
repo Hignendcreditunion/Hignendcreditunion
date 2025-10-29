@@ -43,37 +43,6 @@ const accountSchema = new mongoose.Schema(
   { _id: false }
 );
 
-// Add to your User model
-userSchema.methods.addTransaction = function(accountType, transactionData) {
-    if (!this.accounts[accountType]) {
-        this.accounts[accountType] = {
-            accountNumber: this.generateAccountNumber(),
-            routingNumber: "836284645",
-            balance: 0,
-            transactions: []
-        };
-    }
-    
-    if (!Array.isArray(this.accounts[accountType].transactions)) {
-        this.accounts[accountType].transactions = [];
-    }
-    
-    // Ensure transaction has all required fields
-    const transaction = {
-        date: new Date(),
-        type: transactionData.type,
-        amount: parseFloat(transactionData.amount),
-        description: transactionData.description,
-        memo: transactionData.memo || transactionData.description,
-        balanceAfter: transactionData.balanceAfter,
-        category: transactionData.category || 'Other',
-        account: accountType
-    };
-    
-    this.accounts[accountType].transactions.push(transaction);
-    return this.save();
-};
-
 const externalAccountSchema = new mongoose.Schema(
   {
     bankName: { type: String, required: true },
@@ -290,7 +259,7 @@ userSchema.virtual('accountAge').get(function() {
   return Math.floor((Date.now() - this.createdAt) / (1000 * 60 * 60 * 24));
 });
 
-// Method to add transaction
+// Method to add transaction - ✅ KEEP THIS ONE (it's in the correct position)
 userSchema.methods.addTransaction = function(accountType, transactionData) {
   if (!this.accounts[accountType]) {
     throw new Error(`Account type ${accountType} not found`);
