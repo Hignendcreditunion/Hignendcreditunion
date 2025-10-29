@@ -321,70 +321,90 @@ res.json({
 
 // ------------------ User endpoints ------------------
 
-// Internal transfer - Enhanced version
+// ✅ FIXED: Internal transfer - Permanent version
 app.post("/api/users/:id/transfer", userAuth, transferLimiter, validateTransfer, dbErrorHandler(async (req, res) => {
     const { from, to, amount, memo } = req.body;
-    const user = await User.findById(req.params.id);
+    const userId = req.params.id;
     
-    if (!user) {
-        return res.status(404).json({ success: false, message: "User not found" });
-    }
-
-    if (!user.accounts[from] || !user.accounts[to]) {
-        return res.status(400).json({ success: false, message: "Invalid account type" });
-    }
-
-    const amt = parseFloat(amount);
-    if (user.accounts[from].balance < amt) {
-        return res.status(400).json({ success: false, message: "Insufficient funds" });
-    }
-
-    const now = new Date();
+    console.log(`Transfer request: ${amount} from ${from} to ${to} for user ${userId}`);
     
-    // Ensure accounts have proper structure
-    if (!user.accounts[from].transactions) user.accounts[from].transactions = [];
-    if (!user.accounts[to].transactions) user.accounts[to].transactions = [];
-
-    // Update balances
-    user.accounts[from].balance -= amt;
-    user.accounts[to].balance += amt;
-
-    // Add transaction to FROM account
-    user.accounts[from].transactions.push({
-        date: now,
-        type: "Transfer Out",
-        amount: -amt,
-        description: memo || `Transfer to ${to} account`,
-        memo: memo || `Transfer to ${to} account`,
-        balanceAfter: user.accounts[from].balance,
-        category: "Transfer",
-        account: from
-    });
-
-    // Add transaction to TO account
-    user.accounts[to].transactions.push({
-        date: now,
-        type: "Transfer In",
-        amount: amt,
-        description: memo || `Transfer from ${from} account`,
-        memo: memo || `Transfer from ${from} account`,
-        balanceAfter: user.accounts[to].balance,
-        category: "Transfer",
-        account: to
-    });
-
-    await user.save();
+    // Use transaction to ensure data consistency
+    const session = await mongoose.startSession();
+    session.startTransaction();
     
-    res.json({ 
-        success: true, 
-        message: "Transfer completed successfully",
-        fromBalance: user.accounts[from].balance,
-        toBalance: user.accounts[to].balance,
-        transactions: [
-            ...user.accounts[from].transactions.slice(-1),
-            ...user.accounts[to].transactions.slice(-1)
-        ]
-    });
+    try {
+        const user = await User.findById(userId).session(session);
+        if (!user) {
+            await session.abortTransaction();
+            return res.status(404).json({ success: false, message: "User not found" });
+        }
+
+        // Validate accounts exist
+        if (!user.accounts[from] || !user.accounts[to]) {
+            await session.abortTransaction();
+            return res.status(400).json({ success: false, message: "Invalid account type" });
+        }
+
+        const amt = parseFloat(amount);
+        
+        // Check sufficient funds
+        if (user.accounts[from].balance < amt) {
+            await session.abortTransaction();
+            return res.status(400).json({ success: false, message: "Insufficient funds" });
+        }
+
+        const now = new Date();
+        
+        // Update FROM account
+        user.accounts[from].balance -= amt;
+        user.accounts[from].transactions.push({
+            date: now,
+            type: "Debit",
+            amount: -amt,
+            description: memo || `Transfer to ${to} account`,
+            memo: memo || `Transfer to ${to} account`,
+            balanceAfter: user.accounts[from].balance,
+            category: "Transfer",
+            account: from
+        });
+
+        // Update TO account  
+        user.accounts[to].balance += amt;
+        user.accounts[to].transactions.push({
+            date: now,
+            type: "Credit",
+            amount: amt,
+            description: memo || `Transfer from ${from} account`,
+            memo: memo || `Transfer from ${from} account`,
+            balanceAfter: user.accounts[to].balance,
+            category: "Transfer", 
+            account: to
+        });
+
+        // Save user with transaction
+        await user.save({ session });
+        await session.commitTransaction();
+        
+        console.log(`Transfer successful: ${from}: $${user.accounts[from].balance}, ${to}: $${user.accounts[to].balance}`);
+        
+        res.json({ 
+            success: true, 
+            message: "Transfer completed successfully",
+            fromBalance: user.accounts[from].balance,
+            toBalance: user.accounts[to].balance,
+            transactions: [
+                user.accounts[from].transactions.slice(-1)[0],
+                user.accounts[to].transactions.slice(-1)[0]
+            ]
+        });
+        
+    } catch (error) {
+        await session.abortTransaction();
+        console.error('Transfer transaction error:', error);
+        throw error;
+    } finally {
+        session.endSession();
+    }
 }));
 
 // Zelle transfer
@@ -1240,6 +1260,23 @@ app.use((err, req, res, next) => {
   }
   
   res.status(500).json(response);
+});
+
+// Add to app.js for debugging
+app.get("/api/debug/user/:id", async (req, res) => {
+    try {
+        const user = await User.findById(req.params.id);
+        res.json({
+            success: true,
+            user: {
+                checking: user.accounts.checking,
+                savings: user.accounts.savings,
+                lastUpdated: user.updatedAt
+            }
+        });
+    } catch (error) {
+        res.status(500).json({ success: false, error: error.message });
+    }
 });
 
 // Start server

@@ -234,86 +234,71 @@ updateUI() {
         `).join('');
     }
 
-    async handleInternalTransfer(event) {
-        event.preventDefault();
-        console.log('Processing internal transfer...');
-        
-        const formData = new FormData(event.target);
-        const fromAccount = formData.get('fromAccount');
-        const toAccount = formData.get('toAccount');
-        const amount = parseFloat(formData.get('amount'));
+async handleInternalTransfer(event) {
+    event.preventDefault();
+    console.log('Processing internal transfer...');
+    
+    const formData = new FormData(event.target);
+    const fromAccount = formData.get('fromAccount');
+    const toAccount = formData.get('toAccount');
+    const amount = parseFloat(formData.get('amount'));
 
-        // Validate transfer
-        if (fromAccount === toAccount) {
-            this.showNotification('Cannot transfer to the same account', 'error');
-            return;
-        }
-
-        if (amount <= 0) {
-            this.showNotification('Amount must be greater than 0', 'error');
-            return;
-        }
-
-        if (amount > this.accounts[fromAccount].balance) {
-            this.showNotification('Insufficient funds', 'error');
-            return;
-        }
-
-        try {
-            const response = await fetch(`/api/users/${this.userId}/transfer`, {
-                method: 'POST',
-                headers: {
-                    'Authorization': `Bearer ${this.token}`,
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify({
-                    from: fromAccount,
-                    to: toAccount,
-                    amount: amount,
-                    memo: `Transfer from ${fromAccount} to ${toAccount}`
-                })
-            });
-
-            const data = await response.json();
-
-            if (!response.ok || !data.success) {
-                throw new Error(data.message || 'Transfer failed');
-            }
-
-            // Update local balances from response
-            this.accounts[fromAccount].balance = data.fromBalance;
-            this.accounts[toAccount].balance = data.toBalance;
-            
-            // Add transaction records
-            if (data.transactions) {
-                data.transactions.forEach(transaction => {
-                    this.transactions.unshift({
-                        date: new Date().toISOString().split('T')[0],
-                        description: transaction.description,
-                        account: transaction.account,
-                        amount: transaction.amount
-                    });
-                });
-            }
-
-            // Update UI
-            this.updateUI();
-            
-            // Close modal
-            const modal = bootstrap.Modal.getInstance(document.getElementById('internalTransferModal'));
-            if (modal) modal.hide();
-            
-            // Reset form
-            event.target.reset();
-            
-            // Show success popup
-            this.showSuccessPopup(`Successfully transferred ${this.formatCurrency(amount)} from ${fromAccount} to ${toAccount}`);
-            
-        } catch (error) {
-            console.error('Transfer failed:', error);
-            this.showNotification(error.message || 'Transfer failed. Please try again.', 'error');
-        }
+    // Validate transfer
+    if (fromAccount === toAccount) {
+        this.showNotification('Cannot transfer to the same account', 'error');
+        return;
     }
+
+    if (amount <= 0 || isNaN(amount)) {
+        this.showNotification('Amount must be greater than 0', 'error');
+        return;
+    }
+
+    if (amount > this.accounts[fromAccount].balance) {
+        this.showNotification('Insufficient funds', 'error');
+        return;
+    }
+
+    try {
+        const response = await fetch(`/api/users/${this.userId}/transfer`, {
+            method: 'POST',
+            headers: {
+                'Authorization': `Bearer ${this.token}`,
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                from: fromAccount,
+                to: toAccount,
+                amount: amount,
+                memo: `Transfer from ${fromAccount} to ${toAccount}`
+            })
+        });
+
+        const data = await response.json();
+        console.log('Transfer response:', data);
+
+        if (!response.ok || !data.success) {
+            throw new Error(data.message || 'Transfer failed');
+        }
+
+        // ✅ CRITICAL FIX: Reload user data from server to get updated balances
+        await this.loadUserData();
+        
+        // Close modal
+        const modal = bootstrap.Modal.getInstance(document.getElementById('internalTransferModal'));
+        if (modal) modal.hide();
+        
+        // Reset form
+        event.target.reset();
+        
+        // Show success popup
+        this.showSuccessPopup(`Successfully transferred ${this.formatCurrency(amount)} from ${fromAccount} to ${toAccount}`);
+        
+    } catch (error) {
+        console.error('Transfer failed:', error);
+        this.showNotification(error.message || 'Transfer failed. Please try again.', 'error');
+    }
+}
 
     async handleZelleTransfer(event) {
         event.preventDefault();

@@ -43,6 +43,37 @@ const accountSchema = new mongoose.Schema(
   { _id: false }
 );
 
+// Add to your User model
+userSchema.methods.addTransaction = function(accountType, transactionData) {
+    if (!this.accounts[accountType]) {
+        this.accounts[accountType] = {
+            accountNumber: this.generateAccountNumber(),
+            routingNumber: "836284645",
+            balance: 0,
+            transactions: []
+        };
+    }
+    
+    if (!Array.isArray(this.accounts[accountType].transactions)) {
+        this.accounts[accountType].transactions = [];
+    }
+    
+    // Ensure transaction has all required fields
+    const transaction = {
+        date: new Date(),
+        type: transactionData.type,
+        amount: parseFloat(transactionData.amount),
+        description: transactionData.description,
+        memo: transactionData.memo || transactionData.description,
+        balanceAfter: transactionData.balanceAfter,
+        category: transactionData.category || 'Other',
+        account: accountType
+    };
+    
+    this.accounts[accountType].transactions.push(transaction);
+    return this.save();
+};
+
 const externalAccountSchema = new mongoose.Schema(
   {
     bankName: { type: String, required: true },
