@@ -1,0 +1,423 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>High End Credit Union Homepage</title>
+  <meta name="description" content="High End Credit Union — modern banking, smart savings, and secure loans. Open an account or sign in.">
+  <link rel="preconnect" href="https://images.unsplash.com" crossorigin>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <link href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.5.0/css/all.min.css" rel="stylesheet" />
+  <link href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" rel="stylesheet" />
+  <style>
+    :root{
+      --primary-start:#0072ff; --primary-end:#00c6ff; --accent-gold:#F4B400;
+      --bg-soft:#F9FBFD; --nav-dark:#081C3B; --text-dark:#0F172A;
+      --muted:#6B7280; --card-shadow:0 12px 30px rgba(12,24,48,0.08);
+    }
+    html,body{height:100%}
+    body{font-family:Inter,system-ui,-apple-system,"Segoe UI",Roboto,Arial;background:var(--bg-soft);color:var(--text-dark);-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;margin:0}
+    .navbar{background:#fff;border-bottom:1px solid rgba(8,28,59,0.04);box-shadow:0 6px 18px rgba(9,17,28,0.02)}
+    .navbar-brand{font-weight:800;color:var(--nav-dark)}
+    .nav-link{color:var(--text-dark)!important;font-weight:600;position:relative}
+    .nav-link::after{content:"";position:absolute;left:0;bottom:-6px;height:3px;width:0;background:linear-gradient(90deg,var(--accent-gold),var(--primary-end));transition:width .25s}
+    .nav-link:hover::after{width:100%}
+    
+    /* HERO with static banking image */
+    .hero-section{
+      position:relative;
+      min-height:84vh;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      text-align:center;
+      color:#fff;
+      background-image: linear-gradient(135deg, rgba(8,28,59,0.85), rgba(0,114,255,0.75)),
+                        url('https://images.unsplash.com/photo-1601597119241-c1b7c48a8f7f?auto=format&fit=crop&w=1600&q=80');
+      background-size:cover;
+      background-position:center;
+      background-attachment:fixed;
+    }
+    .hero-content{z-index:2;padding:2rem;max-width:980px}
+    .hero-title{font-size:2.6rem;font-weight:800;line-height:1.03;margin-bottom:.5rem}
+    .hero-sub{font-size:1.05rem;color:rgba(255,255,255,0.95);margin-bottom:1.25rem}
+    
+    .btn-primary{
+      background:linear-gradient(90deg,var(--primary-start),var(--primary-end));
+      border:none;
+      padding:.75rem 1.25rem;
+      border-radius:.6rem;
+      font-weight:700;
+      box-shadow:0 4px 15px rgba(0,114,255,0.3);
+      transition:all 0.3s ease;
+    }
+    .btn-primary:hover{
+      transform:translateY(-2px);
+      box-shadow:0 6px 20px rgba(0,114,255,0.4);
+    }
+    
+    .btn-outline-ghost{
+      background:transparent;
+      color:#fff;
+      border:1px solid rgba(255,255,255,0.14);
+      padding:.7rem 1.15rem;
+      border-radius:.6rem;
+      transition:all 0.3s ease;
+    }
+    .btn-outline-ghost:hover{
+      background:rgba(255,255,255,0.1);
+      border-color:rgba(255,255,255,0.3);
+    }
+    
+    .stats-section{background:linear-gradient(90deg,var(--primary-start),var(--primary-end));color:#fff;padding:2.25rem 0}
+    .counter{font-size:1.9rem;font-weight:800;color:var(--accent-gold)}
+    .features-section{padding:3.5rem 0}
+    .feature-card{border-radius:12px;box-shadow:var(--card-shadow);padding:1.25rem;background:#fff;height:100%;transition:transform 0.3s ease}
+    .feature-card:hover{transform:translateY(-5px)}
+    .feature-icon{font-size:1.4rem;color:var(--primary-end);margin-bottom:.5rem}
+    .gallery{display:flex;gap:12px;overflow-x:auto;padding:1rem 0;scroll-snap-type:x mandatory}
+    .gallery img{height:260px;object-fit:cover;border-radius:10px;flex:0 0 72%;scroll-snap-align:center;box-shadow:var(--card-shadow)}
+    @media(min-width:992px){.gallery img{flex:0 0 33%}}
+    .app-promo{background:#fff;border-radius:10px;padding:1.5rem;box-shadow:var(--card-shadow)}
+    .brand-band{background:#fff;padding:.75rem 0;border-top:1px solid rgba(2,6,23,0.03);border-bottom:1px solid rgba(2,6,23,0.03)}
+    .brand-track{display:flex;gap:48px;align-items:center;animation:scroll 18s linear infinite}
+    .brand-track img{height:32px;opacity:.95}
+    @keyframes scroll{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
+    .offcanvas-overlay{position:fixed;inset:0;background:rgba(3,7,18,0.45);z-index:1250;opacity:0;visibility:hidden;transition:opacity .2s}
+    .offcanvas-overlay.show{opacity:1;visibility:visible}
+    .offcanvas-login{position:fixed;top:0;right:-480px;width:420px;max-width:96%;height:100vh;background:#fff;box-shadow:-24px 0 40px rgba(4,10,25,0.12);z-index:1300;transition:right .32s;padding:1.25rem;overflow-y:auto}
+    .offcanvas-login.open{right:0}
+    .modal-account .card{border:none;border-radius:10px;box-shadow:var(--card-shadow);transition:transform .22s}
+    .modal-account .card:hover{transform:translateY(-6px)}
+    .small-muted{color:var(--muted)}
+    .cta-footer{background:linear-gradient(90deg,var(--primary-end),var(--primary-start));color:#fff;padding:2rem;border-radius:8px;margin-top:1.5rem}
+    footer{background:#fff;padding:2rem 0;border-top:1px solid rgba(2,6,23,0.03)}
+    #chatbotBtn{
+      position:fixed;
+      bottom:22px;
+      right:22px;
+      background:var(--accent-gold);
+      color:var(--nav-dark);
+      width:62px;
+      height:62px;
+      border-radius:50%;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      box-shadow:0 12px 30px rgba(4,12,28,0.12);
+      cursor:pointer;
+      z-index:1400;
+      transition:all 0.3s ease;
+    }
+    #chatbotBtn:hover{
+      transform:scale(1.1);
+      box-shadow:0 15px 35px rgba(4,12,28,0.2);
+    }
+    @media(max-width:768px){
+      .hero-title{font-size:1.8rem}
+      .gallery img{height:200px}
+      .hero-section{background-attachment:scroll}
+    }
+  </style>
+</head>
+<body>
+  <nav class="navbar navbar-expand-lg">
+    <div class="container">
+      <a class="navbar-brand" href="index.html">High End Credit Union</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navMenu"><span class="navbar-toggler-icon"></span></button>
+      <div class="collapse navbar-collapse" id="navMenu">
+        <ul class="navbar-nav ms-auto align-items-lg-center">
+          <li class="nav-item"><a id="featuresBtn" class="nav-link" href="#">Features</a></li>
+          <li class="nav-item"><a id="ratesBtn" class="nav-link" href="#">Rates</a></li>
+          <li class="nav-item"><a class="nav-link" href="help-center.html">Help Center</a></li>
+          <li class="nav-item"><a class="nav-link" href="our-story.html">Our Story</a></li>
+          <li class="nav-item"><a class="nav-link" href="careers.html">Careers</a></li>
+          <li class="nav-item"><a class="nav-link" href="security.html">Security</a></li>
+          <li class="nav-item"><a class="nav-link" href="mailto:support@highendcu.com">Support</a></li>
+          <li class="nav-item ms-3"><button id="openLoginBtnNav" class="btn btn-primary">Sign In</button></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <section class="hero-section" role="img" aria-label="Modern banking interior with professional design">
+    <div class="hero-content container" data-aos="fade-up">
+      <h1 class="hero-title">Banking that moves with you.</h1>
+      <p class="hero-sub">Secure accounts, smarter tools, and transparent pricing — all built for modern life.</p>
+      <div class="d-flex justify-content-center gap-3">
+        <a id="heroOpenAccount" href="register.html" class="btn btn-primary btn-lg">Sign Up</a>
+        <button id="openLoginBtnHero" class="btn btn-outline-ghost btn-lg">Sign In</button>
+      </div>
+      <p class="mt-3 small-muted">Call us: <a href="tel:+18025724519" style="color:rgba(255,255,255,0.9)">+1-802-572-4519</a> · <a href="mailto:support@highendcu.com" style="color:rgba(255,255,255,0.9)">support@highendcu.com</a></p>
+    </div>
+  </section>
+
+  <section class="stats-section text-center">
+    <div class="container">
+      <div class="row gx-3">
+        <div class="col-6 col-md-3"><div class="counter" data-target="1550200">0</div><div class="small-muted">Happy members</div></div>
+        <div class="col-6 col-md-3"><div class="counter" data-target="1512390">0</div><div class="small-muted">Assets managed</div></div>
+        <div class="col-6 col-md-3"><div class="counter" data-target="1512380">0</div><div class="small-muted">Customer satisfaction</div></div>
+        <div class="col-6 col-md-3"><div class="counter" data-target="68">0</div><div class="small-muted">Branches nationwide</div></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="features" class="features-section container">
+    <h2 class="mb-4 text-center" data-aos="fade-up">Modern features built for you</h2>
+    <div class="row g-4">
+      <div class="col-md-3" data-aos="fade-up" data-aos-delay="50">
+        <div class="feature-card text-center p-4"><div class="feature-icon"><i class="fas fa-piggy-bank"></i></div><div class="feature-title">Smart Savings</div><p class="small-muted">Automatic round-ups and smart goals.</p></div>
+      </div>
+      <div class="col-md-3" data-aos="fade-up" data-aos-delay="80">
+        <div class="feature-card text-center p-4"><div class="feature-icon"><i class="fas fa-shield-alt"></i></div><div class="feature-title">Secure Payments</div><p class="small-muted">Tokenized cards & real-time alerts.</p></div>
+      </div>
+      <div class="col-md-3" data-aos="fade-up" data-aos-delay="110">
+        <div class="feature-card text-center p-4"><div class="feature-icon"><i class="fas fa-chart-line"></i></div><div class="feature-title">Insights</div><p class="small-muted">AI-driven spending insights.</p></div>
+      </div>
+      <div class="col-md-3" data-aos="fade-up" data-aos-delay="140">
+        <div class="feature-card text-center p-4"><div class="feature-icon"><i class="fas fa-credit-card"></i></div><div class="feature-title">Credit Builder</div><p class="small-muted">Build credit responsibly.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="container my-4" data-aos="fade-up">
+    <div class="app-promo d-flex flex-column flex-lg-row gap-3 align-items-center">
+      <img src="https://images.unsplash.com/photo-1523473827533-2f2cd7e9e1f0?auto=format&fit=crop&w=800&q=80" alt="App preview" class="img-fluid rounded" width="320" loading="lazy">
+      <div>
+        <h4>Bank on the go</h4>
+        <p class="small-muted">Manage accounts, deposit checks, and move money from anywhere.</p>
+        <div class="d-flex gap-2">
+          <a href="#" class="btn btn-primary"><i class="fab fa-apple me-2"></i>App Store</a>
+          <a href="#" class="btn btn-outline-primary"><i class="fab fa-google-play me-2"></i>Google Play</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="container my-4" data-aos="fade-left">
+    <h3 class="mb-3 text-center">See our app in action</h3>
+    <div class="gallery">
+      <img src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&w=1400&q=80" alt="App screen 1" loading="lazy">
+      <img src="https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?auto=format&fit=crop&w=1400&q=80" alt="App screen 2" loading="lazy">
+      <img src="https://images.unsplash.com/photo-1521791136064-7986c2920216?auto=format&fit=crop&w=1400&q=80" alt="App screen 3" loading="lazy">
+    </div>
+  </section>
+
+  <section class="brand-band" aria-hidden="true">
+    <div class="container overflow-hidden">
+      <div class="brand-track" role="presentation">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/0/04/Visa.svg" alt="Visa" loading="lazy">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/0/04/Mastercard-logo.svg" alt="Mastercard" loading="lazy">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/3/30/Amex_logo.svg" alt="American Express" loading="lazy">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/b/b5/PayPal.svg" alt="PayPal" loading="lazy">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/0/04/Visa.svg" alt="Visa" loading="lazy">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/0/04/Mastercard-logo.svg" alt="Mastercard" loading="lazy">
+      </div>
+    </div>
+  </section>
+
+  <section class="testimonials container" data-aos="fade-up">
+    <h3 class="text-center mb-4">What our members say</h3>
+    <div id="testimonialCarousel" class="carousel slide" data-bs-ride="carousel">
+      <div class="carousel-inner">
+        <div class="carousel-item active">
+          <div class="testimonial-item p-4 text-center"><p>"Switching was the best decision — my savings grew faster than ever."</p><h5 class="mb-0">— Sarah M., New York</h5></div>
+        </div>
+        <div class="carousel-item"><div class="testimonial-item p-4 text-center"><p>"Their app is clean and intuitive — feels like Capital One but better."</p><h5 class="mb-0">— Michael R., Dallas</h5></div></div>
+        <div class="carousel-item"><div class="testimonial-item p-4 text-center"><p>"Customer service is personal and professional."</p><h5 class="mb-0">— Alicia B., Miami</h5></div></div>
+        <div class="carousel-item"><div class="testimonial-item p-4 text-center"><p>"Payments are effortless and quick!"</p><h5 class="mb-0">— Christopher M., Canada</h5></div></div>
+        <div class="carousel-item"><div class="testimonial-item p-4 text-center"><p>"Scheduling payments has never been easier"</p><h5 class="mb-0">— Carl T., Germany</h5></div></div>
+        <div class="carousel-item"><div class="testimonial-item p-4 text-center"><p>"Now this is what i call a BANK!"</p><h5 class="mb-0">— Marle P., California</h5></div></div>
+
+      </div>
+    </div>
+  </section>
+
+  <section class="container">
+    <div class="cta-footer text-center" data-aos="fade-up">
+      <h3>Ready to bank smarter?</h3>
+      <p>Open an account in minutes and start managing money the modern way.</p>
+      <a id="openAccountsCta" href="#" class="btn btn-primary btn-lg me-2">Explore accounts</a>
+      <button id="openLoginBtnCta" class="btn btn-outline-ghost btn-lg">Sign In</button>
+    </div>
+  </section>
+
+  <footer>
+    <div class="container">
+      <div class="row gy-3">
+        <div class="col-md-3"><h5>Banking</h5><a href="register.html#checking">Checking</a><br><a href="register.html#savings">Savings</a></div>
+        <div class="col-md-3"><h5>Loans</h5><a href="register.html#auto">Auto</a><br><a href="register.html#personal">Personal</a></div>
+        <div class="col-md-3"><h5>Company</h5><a href="our-story.html">Our Story</a><br><a href="careers.html">Careers</a></div>
+        <div class="col-md-3"><h5>Help</h5><a href="help-center.html">Help Center</a><br><a href="security.html">Security</a></div>
+      </div>
+      <div class="text-center mt-4 small">© 2025 High End Credit Union. All rights reserved.</div>
+    </div>
+  </footer>
+
+  <div id="chatbotBtn" title="Chat with support"><i class="fas fa-comments"></i></div>
+
+  <div id="offcanvasOverlay" class="offcanvas-overlay" aria-hidden="true"></div>
+  <aside id="offcanvasLogin" class="offcanvas-login" aria-hidden="true" role="dialog" aria-label="Member sign in">
+    <div class="d-flex justify-content-between align-items-center mb-3">
+      <div><strong style="color:var(--nav-dark)">Member sign in</strong><div class="small text-muted">Secure access to your account</div></div>
+      <button id="closeLoginBtn" class="login-close" aria-label="Close">✕</button>
+    </div>
+
+    <form id="slideLoginForm" novalidate>
+      <div class="mb-3"><label for="slideUsername" class="form-label small-muted">Email or username</label><input id="slideUsername" name="username" class="form-control" type="text" placeholder="email@example.com or username" required></div>
+      <div class="mb-3 position-relative"><label for="slidePassword" class="form-label small-muted">Password</label><input id="slidePassword" name="password" class="form-control" type="password" placeholder="••••••••" required><button id="slideTogglePassword" type="button" class="btn btn-sm" style="position:absolute;right:10px;top:50%;transform:translateY(-50%);background:transparent;border:none;color:var(--muted)"><i class="fas fa-eye-slash"></i></button></div>
+      <div class="d-flex justify-content-between align-items-center mb-3"><div class="form-check"><input id="rememberMe" class="form-check-input" type="checkbox"><label class="form-check-label small-muted" for="rememberMe">Remember me</label></div><a href="login.html" class="small-muted">Full login</a></div>
+      <div id="slideLoginError" class="alert alert-danger d-none" role="alert"></div>
+      <div class="d-grid mb-3"><button id="slideLoginBtn" class="btn btn-primary" type="submit"><span class="me-2 slide-btn-text">Sign In</span><span class="spinner-border spinner-border-sm d-none" role="status" aria-hidden="true"></span></button></div>
+      <div class="text-center small text-muted">By signing in you agree to our <a href="#" style="color:var(--primary-end)">Terms</a> and <a href="#" style="color:var(--primary-end)">Privacy</a>.</div>
+    </form>
+    <hr/>
+    <div class="small text-muted mt-2">Need an account? <a href="register.html" style="color:var(--primary-end)">Open one now</a></div>
+    <div style="height:40px"></div>
+  </aside>
+
+  <div class="modal fade modal-account" id="accountsModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-centered modal-dialog-scrollable">
+      <div class="modal-content">
+        <div class="modal-header"><h5 class="modal-title text-primary">Account Options & Rates</h5><button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button></div>
+        <div class="modal-body">
+          <div class="row g-4">
+            <div class="col-md-6 col-lg-4"><div class="card p-3"><h5 class="card-title">Checking Account</h5><p class="small-muted">Everyday banking with no fees and instant transfers.</p><p><strong>APY:</strong> 2.15% &nbsp; <strong>Min Deposit:</strong> $0.00</p><a href="register.html" class="btn btn-primary w-100">Open Account</a></div></div>
+            <div class="col-md-6 col-lg-4"><div class="card p-3"><h5 class="card-title">Savings Account</h5><p class="small-muted">High-yield savings with FDIC coverage.</p><p><strong>APY:</strong> 3.75% &nbsp; <strong>Min Deposit:</strong> $0.00</p><a href="register.html" class="btn btn-primary w-100">Open Account</a></div></div>
+            <div class="col-md-6 col-lg-4"><div class="card p-3"><h5 class="card-title">Certificate of Deposit (CD)</h5><p class="small-muted">Fixed-term investment with guaranteed returns.</p><p><strong>APY:</strong> 4.25% &nbsp; <strong>Min Deposit:</strong> $500</p><a href="register.html" class="btn btn-primary w-100">Open Account</a></div></div>
+            <div class="col-md-6 col-lg-4"><div class="card p-3"><h5 class="card-title">IRA (Retirement)</h5><p class="small-muted">Tax-advantaged retirement.</p><p><strong>APY:</strong> 4.00% &nbsp; <strong>Min Deposit:</strong> $50</p><a href="register.html" class="btn btn-primary w-100">Open Account</a></div></div>
+            <div class="col-md-6 col-lg-4"><div class="card p-3"><h5 class="card-title">Mortgage Loan</h5><p class="small-muted">Competitive mortgages to buy your home.</p><p><strong>Rate:</strong> 6.50% APR &nbsp; <strong>Min Down:</strong> $500</p><a href="register.html" class="btn btn-primary w-100">Apply Now</a></div></div>
+            <div class="col-md-6 col-lg-4"><div class="card p-3"><h5 class="card-title">Auto Loan</h5><p class="small-muted">Flexible options for your next vehicle.</p><p><strong>Rate:</strong> 5.25% APR &nbsp; <strong>Min Down:</strong> $500</p><a href="register.html" class="btn btn-primary w-100">Apply Now</a></div></div>
+            <div class="col-md-6 col-lg-4"><div class="card p-3"><h5 class="card-title">Personal Loan</h5><p class="small-muted">Fast approval for personal expenses.</p><p><strong>Rate:</strong> 7.50% APR &nbsp; <strong>Min Amount:</strong> $50</p><a href="register.html" class="btn btn-primary w-100">Apply Now</a></div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
+  <script>
+    AOS.init({duration:800, once:true});
+
+    document.querySelectorAll('.counter').forEach(counter => {
+      const animate = () => {
+        const target = +counter.dataset.target;
+        let current = +counter.innerText.replace(/,/g,'') || 0;
+        const inc = Math.ceil(target / 120);
+        if (current < target) {
+          counter.innerText = Math.min(current + inc, target).toLocaleString();
+          requestAnimationFrame(animate);
+        } else {
+          counter.innerText = target.toLocaleString();
+        }
+      };
+      const obs = new IntersectionObserver((entries, obs) => {
+        entries.forEach(e => { if (e.isIntersecting) { animate(); obs.disconnect(); } });
+      }, {threshold:0.3});
+      obs.observe(counter);
+    });
+
+    document.querySelectorAll('.brand-track').forEach(track => {
+      track.addEventListener('mouseenter', () => track.style.animationPlayState = 'paused');
+      track.addEventListener('mouseleave', () => track.style.animationPlayState = 'running');
+    });
+
+    const accountsModal = new bootstrap.Modal(document.getElementById('accountsModal'));
+    document.getElementById('featuresBtn').addEventListener('click', (e) => { e.preventDefault(); accountsModal.show(); });
+    document.getElementById('ratesBtn').addEventListener('click', (e) => { e.preventDefault(); accountsModal.show(); });
+    document.getElementById('openAccountsCta').addEventListener('click', (e) => { e.preventDefault(); accountsModal.show(); });
+    document.getElementById('heroOpenAccount').addEventListener('click', (e) => { /* hero Open Account goes directly to register by default */ });
+
+    document.getElementById('chatbotBtn').addEventListener('click', () => {
+      alert("💬 Live chat support coming soon! For now email support@highendcu.com or call +1-802-572-4519");
+    });
+
+    const offcanvas = document.getElementById('offcanvasLogin');
+    const overlay = document.getElementById('offcanvasOverlay');
+    const openBtns = [document.getElementById('openLoginBtnNav'), document.getElementById('openLoginBtnHero'), document.getElementById('openLoginBtnCta'), document.getElementById('openLoginBtnCta')].filter(Boolean);
+    const closeBtn = document.getElementById('closeLoginBtn');
+
+    function openLoginPanel(){
+      offcanvas.classList.add('open');
+      overlay.classList.add('show');
+      offcanvas.setAttribute('aria-hidden','false');
+      document.body.style.overflow = 'hidden';
+      setTimeout(()=>document.getElementById('slideUsername').focus(), 120);
+    }
+    function closeLoginPanel(){
+      offcanvas.classList.remove('open');
+      overlay.classList.remove('show');
+      offcanvas.setAttribute('aria-hidden','true');
+      document.body.style.overflow = '';
+    }
+
+    openBtns.forEach(b => { if (b) b.addEventListener('click', openLoginPanel); });
+    const heroLogin = document.getElementById('openLoginBtnHero');
+    if (heroLogin) heroLogin.addEventListener('click', openLoginPanel);
+    const ctaLogin = document.getElementById('openLoginBtnCta');
+    if (ctaLogin) ctaLogin.addEventListener('click', openLoginPanel);
+    closeBtn.addEventListener('click', closeLoginPanel);
+    overlay.addEventListener('click', closeLoginPanel);
+
+    const slideTogglePassword = document.getElementById('slideTogglePassword');
+    const slidePasswordInput = document.getElementById('slidePassword');
+    slideTogglePassword.addEventListener('click', () => {
+      if (slidePasswordInput.type === 'password') { slidePasswordInput.type = 'text'; slideTogglePassword.innerHTML = '<i class="fas fa-eye"></i>'; }
+      else { slidePasswordInput.type = 'password'; slideTogglePassword.innerHTML = '<i class="fas fa-eye-slash"></i>'; }
+    });
+
+    const slideForm = document.getElementById('slideLoginForm');
+    const slideBtn = document.getElementById('slideLoginBtn');
+    const slideSpinner = slideBtn.querySelector('.spinner-border');
+    const slideBtnText = slideBtn.querySelector('.slide-btn-text');
+    const slideError = document.getElementById('slideLoginError');
+
+    slideForm.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      slideError.classList.add('d-none');
+      const username = document.getElementById('slideUsername').value.trim();
+      const password = document.getElementById('slidePassword').value;
+      const remember = document.getElementById('rememberMe').checked;
+
+      if (!username || !password) { slideError.textContent = 'Please enter email/username and password.'; slideError.classList.remove('d-none'); return; }
+
+      slideBtnText.classList.add('d-none'); slideSpinner.classList.remove('d-none'); slideBtn.disabled = true;
+      try {
+        const isEmail = username.includes('@');
+        const body = isEmail ? { email: username.toLowerCase(), password } : { username, password };
+
+        const res = await fetch('/api/auth/login', { method:'POST', headers:{'Content-Type':'application/json'}, body: JSON.stringify(body) });
+        const data = await res.json();
+
+        if (!res.ok || !data.success) throw new Error(data.message || `Login failed (status ${res.status})`);
+
+        if (!data.user._id) data.user._id = data.user.userId || data.user.id || null;
+        try { localStorage.setItem('jwt', data.token); localStorage.setItem('loggedInUser', JSON.stringify(data.user)); localStorage.setItem('isAdmin', data.user.isAdmin ? 'true' : 'false'); } catch(err){ console.warn('localStorage error', err); }
+
+        closeLoginPanel();
+        const dest = data.user.isAdmin ? 'admin-dashboard.html' : 'user-dashboard.html';
+        setTimeout(()=> window.location.href = dest, 260);
+      } catch (err) {
+        console.error('Login failed:', err);
+        slideError.textContent = err.message || 'Login failed. Please try again.';
+        slideError.classList.remove('d-none');
+      } finally {
+        slideBtnText.classList.remove('d-none'); slideSpinner.classList.add('d-none'); slideBtn.disabled = false;
+      }
+    });
+
+    document.addEventListener('keydown', (e) => { if (e.key === 'Escape' && offcanvas.classList.contains('open')) closeLoginPanel(); });
+    offcanvas.addEventListener('keydown', (e) => {
+      if (e.key === 'Tab') {
+        const focusable = offcanvas.querySelectorAll('a, input, button, textarea, select'); if (!focusable.length) return;
+        const first = focusable[0], last = focusable[focusable.length-1];
+        if (e.shiftKey && document.activeElement === first) { last.focus(); e.preventDefault(); } else if (!e.shiftKey && document.activeElement === last) { first.focus(); e.preventDefault(); }
+      }
+    });
+
+    document.querySelectorAll('a[href^="mailto:"]').forEach(a => a.addEventListener('click', () => {}));
+  </script>
+</body>
+</html>

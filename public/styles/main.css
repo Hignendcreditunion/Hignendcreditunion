@@ -1,0 +1,206 @@
+:root {
+  --primary-blue: #0047AB;
+  --secondary-blue: #0066CC;
+  --accent-gold: #FFD700;
+  --dark-bg: #0F1C3F;
+  --light-bg: #f8f9fa;
+  --text-dark: #333;
+  --text-muted: #666;
+  --button-padding: 0.75rem 1.25rem;
+  --font-size-base: 1rem;
+  --border-radius: 12px;
+  --transition-speed: 0.3s;
+}
+
+/* Global */
+body {
+  background-color: var(--light-bg);
+  font-family: 'Segoe UI', 'Arial', sans-serif;
+  color: var(--text-dark);
+  line-height: 1.6;
+  margin: 0;
+  padding: 0;
+}
+
+/* Auth Pages */
+.auth-container {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--dark-bg);
+  padding: 1rem;
+}
+
+.auth-card {
+  background: #fff;
+  padding: 2rem;
+  border-radius: var(--border-radius);
+  box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+  width: 100%;
+  max-width: 500px;
+  transition: transform var(--transition-speed);
+}
+.auth-card:hover {
+  transform: translateY(-3px);
+}
+
+/* Feature Cards */
+.feature-card {
+  transition: transform var(--transition-speed), box-shadow var(--transition-speed);
+  border-radius: var(--border-radius);
+}
+.feature-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 6px 18px rgba(0,0,0,0.12);
+}
+
+/* Balance Display */
+.balance {
+  font-size: 2rem;
+  font-weight: bold;
+  color: var(--primary-blue);
+}
+.account-number {
+  color: var(--text-muted);
+  font-size: 0.9rem;
+}
+
+/* Rate Badge */
+.rate-badge {
+  background: rgba(0, 71, 171, 0.1);
+  color: var(--primary-blue);
+  padding: 0.4rem 0.9rem;
+  border-radius: 30px;
+  font-weight: 600;
+  font-size: 0.85rem;
+  margin-top: 1rem;
+  display: inline-block;
+}
+
+/* Security Logo */
+.security-logo {
+  color: var(--primary-blue);
+  font-weight: 500;
+  margin-top: 1rem;
+  opacity: 0.9;
+  font-size: 0.95rem;
+}
+.security-logo i {
+  margin-right: 6px;
+  color: var(--accent-gold);
+}
+
+/* Buttons */
+button,
+.btn {
+  padding: var(--button-padding);
+  font-size: var(--font-size-base);
+  border-radius: 30px;
+  font-weight: 600;
+  transition: background-color var(--transition-speed), transform 0.2s ease;
+  border: none;
+}
+button:hover,
+.btn:hover {
+  transform: scale(1.05);
+}
+button:active,
+.btn:active {
+  transform: scale(0.97);
+}
+
+/* Specific Button Adjustments */
+#logoutBtn {
+  font-size: 1.05rem;
+  padding: 0.6rem 1.2rem;
+  border-radius: 22px;
+}
+#nextPageBtn, #prevPageBtn {
+  font-size: 0.9rem;
+  padding: 0.5rem 1rem;
+  border-radius: 20px;
+}
+
+/* Tables */
+.table {
+  font-size: 0.95rem;
+  border-collapse: collapse;
+  width: 100%;
+}
+.table th, .table td {
+  padding: 0.75rem;
+  text-align: left;
+  border-bottom: 1px solid #ddd;
+}
+.table thead th {
+  font-size: 0.9rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  color: var(--primary-blue);
+  border-bottom: 2px solid var(--primary-blue);
+}
+.table tbody tr:hover {
+  background-color: rgba(0, 71, 171, 0.05);
+}
+
+/* Cards */
+.card-body {
+  padding: 1.25rem;
+}
+.card-title {
+  font-size: 1.3rem;
+  font-weight: bold;
+  color: var(--primary-blue);
+}
+.card-text {
+  font-size: 1rem;
+  color: var(--text-dark);
+}
+
+/* Navbar */
+.navbar-brand img {
+  width: 140px;
+  height: auto;
+}
+.navbar-nav .nav-item {
+  font-size: 1rem;
+  margin-right: 1rem;
+}
+.navbar-nav .nav-link {
+  font-weight: 600;
+  transition: color var(--transition-speed);
+}
+.navbar-nav .nav-link:hover {
+  color: var(--accent-gold);
+}
+
+/* Layout */
+.container {
+  padding: 3rem 2rem;
+}
+
+/* Footer */
+.bottom-links h5 {
+  font-size: 1.1rem;
+  margin-bottom: 0.75rem;
+  color: var(--primary-blue);
+}
+.bottom-links p {
+  font-size: 0.9rem;
+  margin: 4px 0;
+  color: var(--text-muted);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .auth-card {
+    padding: 1.5rem;
+  }
+  .container {
+    padding: 2rem 1rem;
+  }
+  .balance {
+    font-size: 1.6rem;
+  }
+}

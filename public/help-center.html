@@ -1,0 +1,676 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Help Center — High End Credit Union</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <link href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.5.0/css/all.min.css" rel="stylesheet" />
+  <link href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" rel="stylesheet" />
+  <style>
+    :root {
+      --primary-start: #0072ff;
+      --primary-end: #00c6ff;
+      --accent-gold: #F4B400;
+      --nav-dark: #081C3B;
+      --text-dark: #0F172A;
+      --muted: #6B7280;
+      --bg-soft: #F9FBFD;
+      --card-shadow: 0 12px 30px rgba(12,24,48,0.08);
+    }
+    
+    body {
+      font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, Arial;
+      background: var(--bg-soft);
+      color: var(--text-dark);
+      margin: 0;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+    
+    .navbar {
+      background: #fff;
+      border-bottom: 1px solid rgba(8,28,59,0.04);
+      box-shadow: 0 6px 18px rgba(9,17,28,0.02);
+      padding: 1rem 0;
+    }
+    
+    .navbar-brand {
+      font-weight: 800;
+      color: var(--nav-dark);
+      font-size: 1.5rem;
+    }
+    
+    .nav-link {
+      color: var(--text-dark) !important;
+      font-weight: 600;
+      position: relative;
+    }
+    
+    .nav-link::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      bottom: -6px;
+      height: 3px;
+      width: 0;
+      background: linear-gradient(90deg, var(--accent-gold), var(--primary-end));
+      transition: width .25s;
+    }
+    
+    .nav-link:hover::after {
+      width: 100%;
+    }
+    
+    .hero {
+      background: linear-gradient(135deg, rgba(8,28,59,0.9), rgba(0,114,255,0.8)), 
+                  url('https://images.unsplash.com/photo-1551836026-d5c55ac8b6b9?auto=format&fit=crop&w=1600&q=80');
+      background-size: cover;
+      background-position: center;
+      color: #fff;
+      padding: 4rem 0;
+      text-align: center;
+      position: relative;
+    }
+    
+    .hero h1 {
+      font-size: 3rem;
+      font-weight: 800;
+      margin-bottom: 1.5rem;
+    }
+    
+    .lead {
+      color: rgba(255,255,255,0.9);
+      font-size: 1.25rem;
+      max-width: 700px;
+      margin: 0 auto 2rem;
+    }
+    
+    .section-title {
+      color: var(--nav-dark);
+      font-weight: 800;
+      margin-bottom: 2rem;
+      position: relative;
+      display: inline-block;
+    }
+    
+    .section-title::after {
+      content: '';
+      position: absolute;
+      bottom: -10px;
+      left: 0;
+      width: 60px;
+      height: 4px;
+      background: linear-gradient(90deg, var(--accent-gold), var(--primary-end));
+      border-radius: 2px;
+    }
+    
+    .search-container {
+      position: relative;
+      max-width: 600px;
+      margin: 0 auto 3rem;
+    }
+    
+    .search-icon {
+      position: absolute;
+      left: 15px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: var(--muted);
+    }
+    
+    .search-input {
+      padding-left: 45px;
+      border-radius: 12px;
+      border: 2px solid #e9ecef;
+      height: 55px;
+      font-size: 1rem;
+      transition: all 0.3s ease;
+    }
+    
+    .search-input:focus {
+      border-color: var(--primary-start);
+      box-shadow: 0 0 0 0.2rem rgba(0,114,255,0.1);
+    }
+    
+    .quick-links {
+      margin-bottom: 3rem;
+    }
+    
+    .quick-link-card {
+      background: #fff;
+      border-radius: 12px;
+      padding: 1.5rem;
+      box-shadow: var(--card-shadow);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      text-align: center;
+      height: 100%;
+      border: none;
+    }
+    
+    .quick-link-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 15px 35px rgba(12,24,48,0.12);
+    }
+    
+    .quick-link-icon {
+      font-size: 2rem;
+      color: var(--primary-end);
+      margin-bottom: 1rem;
+    }
+    
+    .accordion-item {
+      border: none;
+      border-radius: 12px !important;
+      margin-bottom: 1rem;
+      box-shadow: var(--card-shadow);
+      overflow: hidden;
+    }
+    
+    .accordion-button {
+      background: #fff;
+      color: var(--nav-dark);
+      font-weight: 600;
+      padding: 1.25rem 1.5rem;
+      border: none;
+      box-shadow: none;
+    }
+    
+    .accordion-button:not(.collapsed) {
+      background: linear-gradient(135deg, #f8fbff, #e3f2fd);
+      color: var(--primary-start);
+    }
+    
+    .accordion-button::after {
+      background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='%230072ff'%3e%3cpath fill-rule='evenodd' d='M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z'/%3e%3c/svg%3e");
+    }
+    
+    .accordion-body {
+      padding: 1.5rem;
+      background: #fff;
+    }
+    
+    .contact-section {
+      background: linear-gradient(135deg, #f8fbff, #e3f2fd);
+      border-radius: 20px;
+      padding: 3rem;
+      margin-top: 4rem;
+    }
+    
+    .contact-card {
+      background: #fff;
+      border-radius: 12px;
+      padding: 2rem;
+      box-shadow: var(--card-shadow);
+      text-align: center;
+      height: 100%;
+      transition: transform 0.3s ease;
+    }
+    
+    .contact-card:hover {
+      transform: translateY(-5px);
+    }
+    
+    .contact-icon {
+      font-size: 2.5rem;
+      color: var(--primary-start);
+      margin-bottom: 1.5rem;
+    }
+    
+    .btn-primary {
+      background: linear-gradient(90deg, var(--primary-start), var(--primary-end));
+      border: none;
+      padding: 0.75rem 1.5rem;
+      border-radius: 10px;
+      font-weight: 600;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 15px rgba(0,114,255,0.2);
+    }
+    
+    .btn-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(0,114,255,0.3);
+    }
+    
+    .small-muted {
+      color: var(--muted);
+    }
+    
+    footer {
+      background: #fff;
+      padding: 3rem 0;
+      border-top: 1px solid rgba(2,6,23,0.04);
+      margin-top: 4rem;
+    }
+    
+    .no-results {
+      text-align: center;
+      padding: 3rem;
+      display: none;
+    }
+    
+    @media (max-width: 768px) {
+      .hero h1 {
+        font-size: 2.5rem;
+      }
+      
+      .hero {
+        padding: 3rem 0;
+      }
+      
+      .contact-section {
+        padding: 2rem 1.5rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <nav class="navbar navbar-expand-lg">
+    <div class="container">
+      <a class="navbar-brand" href="index.html">High End Credit Union</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navMenu">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navMenu">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+          <li class="nav-item"><a class="nav-link" href="our-story.html">Our Story</a></li>
+          <li class="nav-item"><a class="nav-link" href="careers.html">Careers</a></li>
+          <li class="nav-item"><a class="nav-link active" href="help-center.html">Help Center</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <header class="hero">
+    <div class="container">
+      <h1 data-aos="fade-up">How can we help you?</h1>
+      <p class="lead" data-aos="fade-up" data-aos-delay="100">Find answers to common questions or contact our support team.</p>
+    </div>
+  </header>
+
+  <main class="container py-5">
+    <section class="search-container" data-aos="fade-up">
+      <i class="fas fa-search search-icon"></i>
+      <input id="faqSearch" class="form-control search-input" placeholder="Search help articles (e.g., password, transfer, account)" aria-label="Search help">
+    </section>
+
+    <section class="quick-links" data-aos="fade-up">
+      <h3 class="section-title mb-4">Quick Help</h3>
+      <div class="row g-4">
+        <div class="col-md-3">
+          <div class="quick-link-card">
+            <div class="quick-link-icon">
+              <i class="fas fa-key"></i>
+            </div>
+            <h5>Reset Password</h5>
+            <p class="small-muted">Can't access your account?</p>
+            <a href="#password-help" class="btn btn-sm btn-outline-primary">Get Help</a>
+          </div>
+        </div>
+        <div class="col-md-3">
+          <div class="quick-link-card">
+            <div class="quick-link-icon">
+              <i class="fas fa-exchange-alt"></i>
+            </div>
+            <h5>Send Money</h5>
+            <p class="small-muted">Make transfers & payments</p>
+            <a href="#transfer-help" class="btn btn-sm btn-outline-primary">Learn How</a>
+          </div>
+        </div>
+        <div class="col-md-3">
+          <div class="quick-link-card">
+            <div class="quick-link-icon">
+              <i class="fas fa-credit-card"></i>
+            </div>
+            <h5>Card Issues</h5>
+            <p class="small-muted">Lost, stolen, or blocked card</p>
+            <a href="#card-help" class="btn btn-sm btn-outline-primary">Find Solutions</a>
+          </div>
+        </div>
+        <div class="col-md-3">
+          <div class="quick-link-card">
+            <div class="quick-link-icon">
+              <i class="fas fa-mobile-alt"></i>
+            </div>
+            <h5>Mobile App</h5>
+            <p class="small-muted">App setup & troubleshooting</p>
+            <a href="#app-help" class="btn btn-sm btn-outline-primary">Get Support</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="faq">
+      <h3 class="section-title mb-4">Frequently Asked Questions</h3>
+      
+      <div class="no-results" id="noResults">
+        <i class="fas fa-search fa-3x mb-3 text-muted"></i>
+        <h4>No results found</h4>
+        <p class="small-muted">Try different keywords or contact our support team for assistance.</p>
+        <a href="#contact" class="btn btn-primary mt-2">Contact Support</a>
+      </div>
+      
+      <div class="accordion" id="faq">
+        <div class="accordion-item" data-category="password">
+          <h2 class="accordion-header" id="q1">
+            <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#c1" aria-expanded="true">
+              How do I reset my password?
+            </button>
+          </h2>
+          <div id="c1" class="accordion-collapse collapse show" data-bs-parent="#faq">
+            <div class="accordion-body">
+              <p>To reset your password:</p>
+              <ol>
+                <li>Go to the login page and click "Forgot password"</li>
+                <li>Enter your email address or username</li>
+                <li>Check your email for a password reset link (check spam folder if you don't see it)</li>
+                <li>Click the link and create a new password</li>
+              </ol>
+              <p class="small-muted mt-2">If you're still having trouble, contact our support team.</p>
+            </div>
+          </div>
+        </div>
+        
+        <div class="accordion-item" data-category="transfer">
+          <h2 class="accordion-header" id="q2">
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#c2">
+              How do I transfer money between accounts?
+            </button>
+          </h2>
+          <div id="c2" class="accordion-collapse collapse" data-bs-parent="#faq">
+            <div class="accordion-body">
+              <p>You can transfer money between your accounts in several ways:</p>
+              <ul>
+                <li><strong>Online Banking:</strong> Log in and navigate to the "Transfers" section</li>
+                <li><strong>Mobile App:</strong> Tap "Transfer" and follow the prompts</li>
+                <li><strong>Phone:</strong> Call our automated system at +1-802-572-4519</li>
+              </ul>
+              <p>Transfers between your own accounts are typically instant. There are no fees for internal transfers.</p>
+            </div>
+          </div>
+        </div>
+        
+        <div class="accordion-item" data-category="dispute card">
+          <h2 class="accordion-header" id="q3">
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#c3">
+              How do I dispute a transaction?
+            </button>
+          </h2>
+          <div id="c3" class="accordion-collapse collapse" data-bs-parent="#faq">
+            <div class="accordion-body">
+              <p>If you notice an unauthorized or incorrect transaction:</p>
+              <ol>
+                <li>Contact us immediately at <a href="tel:+18025724519">+1-802-572-4519</a> or email <a href="mailto:support@highendcu.com">support@highendcu.com</a></li>
+                <li>Provide details about the transaction (date, amount, merchant)</li>
+                <li>We'll place a temporary credit on your account while we investigate</li>
+                <li>The investigation typically takes 10-45 business days</li>
+              </ol>
+              <p class="small-muted">For fastest resolution, contact us within 60 days of the statement showing the error.</p>
+            </div>
+          </div>
+        </div>
+        
+        <div class="accordion-item" data-category="deposit check mobile">
+          <h2 class="accordion-header" id="q4">
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#c4">
+              How do I deposit a check using the mobile app?
+            </button>
+          </h2>
+          <div id="c4" class="accordion-collapse collapse" data-bs-parent="#faq">
+            <div class="accordion-body">
+              <p>To deposit a check using our mobile app:</p>
+              <ol>
+                <li>Open the High End CU mobile app</li>
+                <li>Tap "Deposit" from the main menu</li>
+                <li>Select the account where you want to deposit the check</li>
+                <li>Enter the check amount</li>
+                <li>Take a clear photo of the front of the endorsed check</li>
+                <li>Take a clear photo of the back of the check</li>
+                <li>Review and submit your deposit</li>
+              </ol>
+              <p class="small-muted">Most mobile deposits are available within 1 business day. Endorse the check with "For Mobile Deposit Only" and your signature.</p>
+            </div>
+          </div>
+        </div>
+        
+        <div class="accordion-item" data-category="card lost stolen">
+          <h2 class="accordion-header" id="q5">
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#c5">
+              What should I do if my card is lost or stolen?
+            </button>
+          </h2>
+          <div id="c5" class="accordion-collapse collapse" data-bs-parent="#faq">
+            <div class="accordion-body">
+              <p>If your debit or credit card is lost or stolen:</p>
+              <ol>
+                <li><strong>Immediately:</strong> Log into your online banking or mobile app and report your card as lost/stolen</li>
+                <li><strong>Or call:</strong> Our 24/7 support line at <a href="tel:+18025724519">+1-802-572-4519</a></li>
+                <li>We'll immediately block the card to prevent unauthorized use</li>
+                <li>A replacement card will be sent to you within 3-5 business days</li>
+                <li>Review your recent transactions for any unauthorized activity</li>
+              </ol>
+              <p class="small-muted">You're not liable for unauthorized transactions if reported promptly.</p>
+            </div>
+          </div>
+        </div>
+        
+        <div class="accordion-item" data-category="account open new">
+          <h2 class="accordion-header" id="q6">
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#c6">
+              How do I open a new account?
+            </button>
+          </h2>
+          <div id="c6" class="accordion-collapse collapse" data-bs-parent="#faq">
+            <div class="accordion-body">
+              <p>Opening a new account is easy:</p>
+              <ul>
+                <li><strong>Online:</strong> Visit our <a href="register.html">registration page</a> to open an account in minutes</li>
+                <li><strong>Mobile App:</strong> Download our app and follow the new account setup</li>
+                <li><strong>Phone:</strong> Call us at <a href="tel:+18025724519">+1-802-572-4519</a> and we'll guide you through the process</li>
+                <li><strong>In Person:</strong> Visit any of our 68 branches nationwide</li>
+              </ul>
+              <p>You'll need your Social Security Number, a valid government-issued ID, and funding information to open an account.</p>
+            </div>
+          </div>
+        </div>
+        
+        <div class="accordion-item" data-category="app mobile">
+          <h2 class="accordion-header" id="q7">
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#c7">
+              Is the mobile app secure?
+            </button>
+          </h2>
+          <div id="c7" class="accordion-collapse collapse" data-bs-parent="#faq">
+            <div class="accordion-body">
+              <p>Yes, our mobile app employs multiple security measures to protect your information:</p>
+              <ul>
+                <li>End-to-end encryption for all data transmission</li>
+                <li>Biometric authentication (fingerprint or face ID)</li>
+                <li>Multi-factor authentication for sensitive actions</li>
+                <li>Automatic logout after periods of inactivity</li>
+                <li>Real-time fraud monitoring</li>
+                <li>Ability to instantly lock your card from the app</li>
+              </ul>
+              <p class="small-muted">We recommend keeping your app updated and using a secure passcode on your device.</p>
+            </div>
+          </div>
+        </div>
+        
+        <div class="accordion-item" data-category="fee">
+          <h2 class="accordion-header" id="q8">
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#c8">
+              What are your account fees?
+            </button>
+          </h2>
+          <div id="c8" class="accordion-collapse collapse" data-bs-parent="#faq">
+            <div class="accordion-body">
+              <p>We're committed to transparent pricing with no hidden fees:</p>
+              <ul>
+                <li><strong>Checking Accounts:</strong> No monthly maintenance fees</li>
+                <li><strong>Savings Accounts:</strong> No monthly fees with $100 minimum balance</li>
+                <li><strong>ATM Fees:</strong> Free at our network ATMs, $2 reimbursement for out-of-network ATMs</li>
+                <li><strong>Overdraft:</strong> $25 fee per occurrence (can be avoided with overdraft protection)</li>
+                <li><strong>Wire Transfers:</strong> $15 domestic, $35 international</li>
+                <li><strong>Paper Statements:</strong> $2 per month (free electronic statements)</li>
+              </ul>
+              <p class="small-muted">See our complete fee schedule in your account agreement or contact us for details.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="contact" class="contact-section" data-aos="fade-up">
+      <h3 class="section-title text-center mb-5">Still Need Help?</h3>
+      <div class="row g-4">
+        <div class="col-md-4">
+          <div class="contact-card">
+            <div class="contact-icon">
+              <i class="fas fa-phone"></i>
+            </div>
+            <h4>Call Us</h4>
+            <p class="small-muted mb-3">Speak directly with a support specialist</p>
+            <a href="tel:+18025724519" class="btn btn-primary">+1-802-572-4519</a>
+            <p class="small-muted mt-2">Mon-Fri: 8am-8pm EST<br>Sat: 9am-5pm EST</p>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="contact-card">
+            <div class="contact-icon">
+              <i class="fas fa-envelope"></i>
+            </div>
+            <h4>Email Us</h4>
+            <p class="small-muted mb-3">Send us a message and we'll respond within 24 hours</p>
+            <a href="mailto:support@highendcu.com" class="btn btn-primary">support@highendcu.com</a>
+            <p class="small-muted mt-2">We typically respond within 4 hours during business days</p>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="contact-card">
+            <div class="contact-icon">
+              <i class="fas fa-comments"></i>
+            </div>
+            <h4>Live Chat</h4>
+            <p class="small-muted mb-3">Chat with us in real-time for quick answers</p>
+            <button class="btn btn-primary" onclick="alert('Live chat is available Mon-Fri 9am-6pm EST. Please call or email for immediate assistance.')">Start Chat</button>
+            <p class="small-muted mt-2">Mon-Fri: 9am-6pm EST</p>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container">
+      <div class="row gy-4">
+        <div class="col-md-4">
+          <h5>High End Credit Union</h5>
+          <p class="small-muted">Your Financial Success, Our Priority</p>
+        </div>
+        <div class="col-md-4">
+          <h6>Quick Links</h6>
+          <div class="d-flex flex-column">
+            <a href="index.html" class="small-muted mb-1">Home</a>
+            <a href="our-story.html" class="small-muted mb-1">Our Story</a>
+            <a href="careers.html" class="small-muted mb-1">Careers</a>
+            <a href="security.html" class="small-muted mb-1">Security</a>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <h6>Contact</h6>
+          <div class="d-flex flex-column">
+            <span class="small-muted mb-1">support@highendcu.com</span>
+            <span class="small-muted mb-1">+1-802-572-4519</span>
+            <span class="small-muted">Mon-Fri: 8am-8pm EST</span>
+          </div>
+        </div>
+      </div>
+      <div class="text-center mt-4 pt-3 border-top">
+        <span class="small-muted">© 2025 High End Credit Union. All rights reserved.</span>
+      </div>
+    </div>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
+  <script>
+    // Initialize AOS animations
+    AOS.init({
+      duration: 800,
+      once: true,
+      offset: 100
+    });
+    
+    // Enhanced FAQ search functionality
+    document.getElementById('faqSearch').addEventListener('input', function(e) {
+      const query = e.target.value.toLowerCase().trim();
+      const faqItems = document.querySelectorAll('#faq .accordion-item');
+      const noResults = document.getElementById('noResults');
+      let visibleCount = 0;
+      
+      if (query.length === 0) {
+        // Show all items when search is empty
+        faqItems.forEach(item => {
+          item.style.display = '';
+          visibleCount++;
+        });
+        noResults.style.display = 'none';
+        return;
+      }
+      
+      faqItems.forEach(item => {
+        const text = item.innerText.toLowerCase();
+        const category = item.getAttribute('data-category');
+        const searchTerms = category ? category + ' ' + text : text;
+        
+        if (searchTerms.includes(query)) {
+          item.style.display = '';
+          visibleCount++;
+          
+          // Auto-expand matching items
+          const button = item.querySelector('.accordion-button');
+          if (button.classList.contains('collapsed')) {
+            button.click();
+          }
+        } else {
+          item.style.display = 'none';
+        }
+      });
+      
+      // Show/hide no results message
+      if (visibleCount === 0) {
+        noResults.style.display = 'block';
+      } else {
+        noResults.style.display = 'none';
+      }
+    });
+    
+    // Quick link navigation
+    document.querySelectorAll('.quick-link-card a').forEach(link => {
+      link.addEventListener('click', function(e) {
+        e.preventDefault();
+        const targetId = this.getAttribute('href');
+        const searchInput = document.getElementById('faqSearch');
+        
+        if (targetId === '#password-help') {
+          searchInput.value = 'password';
+        } else if (targetId === '#transfer-help') {
+          searchInput.value = 'transfer';
+        } else if (targetId === '#card-help') {
+          searchInput.value = 'card';
+        } else if (targetId === '#app-help') {
+          searchInput.value = 'app';
+        }
+        
+        // Trigger the search
+        const event = new Event('input', { bubbles: true });
+        searchInput.dispatchEvent(event);
+        
+        // Scroll to FAQ section
+        document.querySelector('.faq').scrollIntoView({ behavior: 'smooth' });
+      });
+    });
+  </script>
+</body>
+</html>

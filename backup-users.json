@@ -1,0 +1,409 @@
+{
+  "timestamp": "2025-09-07T00:10:50.108Z",
+  "users": [
+    {
+      "_id": "6806cc5c21869c62f7babf56",
+      "name": "Robert Yeats",
+      "email": "byeats68@gmail.com",
+      "username": "byeats68@gmail.com",
+      "password": "$2b$10$y02lrFpaHa1Ij.PY6WbrNOi3d/MQQhbNo8pZvM/2eELlDPTVnht0O",
+      "status": "active",
+      "accounts": {
+        "checking": {
+          "accountNumber": "4927193116",
+          "routingNumber": "836284645",
+          "balance": 10020000,
+          "transactions": [
+            {
+              "date": "2025-04-21T23:13:32.268Z",
+              "type": "Credit",
+              "amount": 1000000,
+              "description": "Winnings Prize Transfer from Facebook",
+              "memo": "winnings",
+              "reference": "TX-1745277212257",
+              "_id": "6806d11c21869c62f7babfa5"
+            },
+            {
+              "date": "2025-04-22T12:06:33.746Z",
+              "type": "Credit",
+              "amount": 1000000,
+              "description": "Winnings Prize Transfer from Facebook",
+              "memo": "winnings",
+              "reference": "TX-1745323593723",
+              "_id": "680786492e8eb3567b01678c"
+            },
+            {
+              "date": "2025-04-22T12:07:30.208Z",
+              "type": "Credit",
+              "amount": 1000000,
+              "description": "Winnings Prize Transfer from Facebook",
+              "memo": "winnings",
+              "reference": "TX-1745323650205",
+              "_id": "680786822e8eb3567b0167bb"
+            },
+            {
+              "date": "2025-04-22T12:37:10.265Z",
+              "type": "Credit",
+              "amount": 1000000,
+              "description": "Winnings Prize Transfer from Facebook",
+              "memo": "winnings",
+              "reference": "TX-1745325430263",
+              "_id": "68078d762e8eb3567b0168a1"
+            },
+            {
+              "date": "2025-04-22T12:37:35.580Z",
+              "type": "Credit",
+              "amount": 20000,
+              "description": "Winnings Prize Transfer from Facebook",
+              "memo": "winnings",
+              "reference": "TX-1745325455578",
+              "_id": "68078d8f2e8eb3567b0168e1"
+            },
+            {
+              "date": "2025-04-23T03:21:56.893Z",
+              "type": "Credit",
+              "amount": 6000000,
+              "description": "Winnings Prize Transfer from Facebook",
+              "memo": "winnings",
+              "reference": "TX-1745378516872",
+              "_id": "68085cd4e169d14aee90341a"
+            }
+          ]
+        },
+        "savings": {
+          "accountNumber": "2443469675",
+          "routingNumber": "836284645",
+          "balance": 0,
+          "transactions": []
+        }
+      },
+      "__v": 6
+    },
+    {
+      "_id": "680787d22e8eb3567b0167f4",
+      "name": "Richard  Cucunato ",
+      "email": "cucunatorichard88@gmail.com",
+      "username": "cucunatorichard88@gmail.com",
+      "password": "$2b$10$ADocSk6CYXgnWOYhs5K6M.2MOd3hOU5gPJKMeaUO2S6vxwRjUaQ2C",
+      "status": "active",
+      "accounts": {
+        "checking": {
+          "accountNumber": "3215723109",
+          "routingNumber": "836284645",
+          "balance": 1000000,
+          "transactions": [
+            {
+              "date": "2025-04-22T12:16:02.896Z",
+              "type": "Credit",
+              "amount": 1000000,
+              "description": "Winnings Prize Transfer from Facebook",
+              "memo": "winnings",
+              "reference": "TX-1745324162893",
+              "_id": "680788822e8eb3567b016830"
+            }
+          ]
+        },
+        "savings": {
+          "accountNumber": "4461782722",
+          "routingNumber": "836284645",
+          "balance": 0,
+          "transactions": []
+        }
+      },
+      "__v": 1
+    },
+    {
+      "_id": "6808629ee169d14aee9034b0",
+      "name": "Lonnie  Baretich ",
+      "email": "lonniebaretich2748@gmail.com",
+      "username": "Lonnie2838",
+      "password": "$2b$10$3pUPKA05lmNRw.DJNXCVYOgCrFHpCsgAgeyJaMEyNTQBlyjb9vuDa",
+      "status": "active",
+      "accounts": {
+        "checking": {
+          "accountNumber": "7050099055",
+          "routingNumber": "836284645",
+          "balance": 5000000,
+          "transactions": [
+            {
+              "date": "2025-04-23T04:52:09.270Z",
+              "type": "Credit",
+              "amount": 5000000,
+              "description": "Winnings Prize Transfer from Facebook",
+              "memo": "winnings",
+              "reference": "TX-1745383929267",
+              "_id": "680871f9e169d14aee90355c"
+            }
+          ]
+        },
+        "savings": {
+          "accountNumber": "4066925140",
+          "routingNumber": "836284645",
+          "balance": 0,
+          "transactions": []
+        }
+      },
+      "__v": 1
+    },
+    {
+      "_id": "6808b497b79bf99596df88de",
+      "name": "Richard Wheat",
+      "email": "wheatrichard8@gmail.com",
+      "username": "Richardwheat",
+      "password": "$2b$10$RSt8PsRgJfcWXqJBYRpoeOd2z/U5TDvvEd.UjYO0Ng75gQeFyjIGK",
+      "status": "active",
+      "accounts": {
+        "checking": {
+          "accountNumber": "5863848191",
+          "routingNumber": "836284645",
+          "balance": 10000000,
+          "transactions": [
+            {
+              "date": "2025-04-26T00:50:17.376Z",
+              "type": "Credit",
+              "amount": 10000000,
+              "description": "Winnings Prize Transfer from Facebook",
+              "memo": "Winnings",
+              "reference": "TX-1745628617244",
+              "_id": "680c2dc966d56fb072742584"
+            }
+          ]
+        },
+        "savings": {
+          "accountNumber": "8157639570",
+          "routingNumber": "836284645",
+          "balance": 0,
+          "transactions": []
+        }
+      },
+      "__v": 1
+    },
+    {
+      "_id": "6813cbd202352792800c4e08",
+      "name": "Raymond Martin  Williams ",
+      "email": "williamsraymondmartin@gmail.com",
+      "username": "Raymond11",
+      "password": "$2b$10$0311X.D3xJVrR/DU4ORFnu3NqxAXwRLOh27IOQkZ5PlB9FL9.P6fi",
+      "status": "active",
+      "accounts": {
+        "checking": {
+          "accountNumber": "7866901502",
+          "routingNumber": "836284645",
+          "balance": 5000000,
+          "transactions": [
+            {
+              "date": "2025-05-01T19:54:01.863Z",
+              "type": "Credit",
+              "amount": 5000000,
+              "description": "Winnings Prize Transfer from Facebook",
+              "memo": "Winnings",
+              "reference": "TX-1746129241856",
+              "_id": "6813d15902352792800c4e78"
+            }
+          ]
+        },
+        "savings": {
+          "accountNumber": "5185638364",
+          "routingNumber": "836284645",
+          "balance": 0,
+          "transactions": []
+        }
+      },
+      "__v": 1
+    },
+    {
+      "_id": "681966fcff62c40148522b22",
+      "name": "Benjamin J. Skinner II ",
+      "email": "benjaminjskinnerii@gmail.com",
+      "username": "Ben1988",
+      "password": "$2b$10$wmqMKcLP4Tfzew2yeJrsROYQH/P./3EBiVZ1Cpb2zoT31x3gs7u.y",
+      "status": "active",
+      "accounts": {
+        "checking": {
+          "accountNumber": "5966879010",
+          "routingNumber": "836284645",
+          "balance": 3000000,
+          "transactions": [
+            {
+              "date": "2025-05-06T17:27:55.596Z",
+              "type": "Credit",
+              "amount": 3000000,
+              "description": "Winnings Prize Transfer from PCH",
+              "memo": "Winnings Prize Transfer from Facebook",
+              "reference": "TX-1746552475595",
+              "_id": "681a469b60745ee3794b38e5"
+            }
+          ]
+        },
+        "savings": {
+          "accountNumber": "7153164977",
+          "routingNumber": "836284645",
+          "balance": 0,
+          "transactions": []
+        }
+      },
+      "__v": 1
+    },
+    {
+      "_id": "684194e474a6a8653580dff6",
+      "name": "Name Class",
+      "email": "nameclass@gmail.com",
+      "username": "nameclass",
+      "password": "$2b$10$S1RYpU5Fwa0h9bgJNhTDx.ywZIkjtqliifmodEYzdyO/RfWKk11QK",
+      "status": "active",
+      "accounts": {
+        "checking": {
+          "accountNumber": "9776381946",
+          "routingNumber": "836284645",
+          "balance": 0,
+          "transactions": []
+        },
+        "savings": {
+          "accountNumber": "3381290085",
+          "routingNumber": "836284645",
+          "balance": 0,
+          "transactions": []
+        }
+      },
+      "__v": 0
+    },
+    {
+      "_id": "6841f87c7731f446b920796b",
+      "name": "Terry Pierson ",
+      "email": "papat1954@hotmail.com",
+      "username": "Terryrp1954",
+      "password": "$2b$10$cvZv5Nv9vjxlrQfsYBanyOUFI4So9o.QW6M0biwebMBp60mwGFpkm",
+      "status": "active",
+      "accounts": {
+        "checking": {
+          "accountNumber": "8186868515",
+          "routingNumber": "836284645",
+          "balance": 261461,
+          "transactions": [
+            {
+              "date": "2025-06-06T20:32:52.013Z",
+              "type": "Credit",
+              "amount": 132850,
+              "description": "Womply Loan",
+              "memo": "Womply loan",
+              "reference": "TX-1749241971973",
+              "_id": "6843507483b152116bce7b2a"
+            },
+            {
+              "date": "2025-06-17T08:39:21.429Z",
+              "type": "Credit",
+              "amount": 128611,
+              "description": "Womply Loan",
+              "memo": "Womply Loan",
+              "reference": "TX-1750149561399",
+              "_id": "685129b9b40ce2533d603981"
+            }
+          ]
+        },
+        "savings": {
+          "accountNumber": "9098355098",
+          "routingNumber": "836284645",
+          "balance": 0,
+          "transactions": []
+        }
+      },
+      "__v": 2
+    },
+    {
+      "_id": "68679d4cb53f5c4e682d8f2a",
+      "name": "Loren Judisch",
+      "email": "rescuecapthfd@gmail.com",
+      "username": "Pathfinder #1",
+      "password": "$2b$10$zJKbKOCWKcc8pgQNYcBd1OmH/RVM3ixT2ZTXRKbK7k5ikCoYgueq.",
+      "status": "active",
+      "accounts": {
+        "checking": {
+          "accountNumber": "9645416830",
+          "routingNumber": "836284645",
+          "balance": 0,
+          "transactions": []
+        },
+        "savings": {
+          "accountNumber": "5256335935",
+          "routingNumber": "836284645",
+          "balance": 0,
+          "transactions": []
+        }
+      },
+      "__v": 0
+    },
+    {
+      "_id": "6878b17a6f5fedac7c189948",
+      "name": "Wayne Manley",
+      "email": "waynemanley0068@gmail.com",
+      "username": "Waynemanley",
+      "password": "$2b$10$FbUwYYllijOTx.95BbZDJuG5XYt1Py6hOCpQXdjvPSKhuj6LAySg6",
+      "status": "active",
+      "accounts": {
+        "checking": {
+          "accountNumber": "4444587890",
+          "routingNumber": "836284645",
+          "balance": 0,
+          "transactions": []
+        },
+        "savings": {
+          "accountNumber": "5797024545",
+          "routingNumber": "836284645",
+          "balance": 0,
+          "transactions": []
+        }
+      },
+      "__v": 0
+    },
+    {
+      "_id": "68bccb0bc84c1a5947dddfb0",
+      "name": "mailer mail",
+      "email": "mail@gmail.com",
+      "username": "mail",
+      "password": "$2b$10$1e3ngRhxpXBXkl39cWKJ0eK7WmTCx9AMrRAZrUhQ82XKvvJ64AuBS",
+      "status": "active",
+      "accounts": {
+        "checking": {
+          "accountNumber": "4819216820",
+          "routingNumber": "836284645",
+          "balance": 0,
+          "transactions": []
+        },
+        "savings": {
+          "accountNumber": "1199620345",
+          "routingNumber": "836284645",
+          "balance": 0,
+          "transactions": []
+        }
+      },
+      "createdAt": "2025-09-07T00:00:11.597Z",
+      "updatedAt": "2025-09-07T00:00:11.597Z",
+      "__v": 0
+    },
+    {
+      "_id": "68bccb0bc84c1a5947dddfb3",
+      "name": "game boy",
+      "email": "g@gmail.com",
+      "username": "gmail",
+      "password": "$2b$10$CeaxR38bYG59vhB/4bX5lecty8J.SEMBxjKTPFnKfsjIB30kqQAta",
+      "status": "active",
+      "accounts": {
+        "checking": {
+          "accountNumber": "1486256473",
+          "routingNumber": "836284645",
+          "balance": 0,
+          "transactions": []
+        },
+        "savings": {
+          "accountNumber": "1130463416",
+          "routingNumber": "836284645",
+          "balance": 0,
+          "transactions": []
+        }
+      },
+      "createdAt": "2025-09-07T00:00:11.937Z",
+      "updatedAt": "2025-09-07T00:00:11.937Z",
+      "__v": 0
+    }
+  ]
+}

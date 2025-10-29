@@ -1,0 +1,548 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Careers — High End Credit Union</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <link href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.5.0/css/all.min.css" rel="stylesheet" />
+  <link href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" rel="stylesheet" />
+  <style>
+    :root {
+      --primary-start: #0072ff;
+      --primary-end: #00c6ff;
+      --accent-gold: #F4B400;
+      --nav-dark: #081C3B;
+      --text-dark: #0F172A;
+      --muted: #6B7280;
+      --bg-soft: #F9FBFD;
+      --card-shadow: 0 12px 30px rgba(12,24,48,0.08);
+    }
+    
+    body {
+      font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, Arial;
+      background: var(--bg-soft);
+      color: var(--text-dark);
+      margin: 0;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+    
+    .navbar {
+      background: #fff;
+      border-bottom: 1px solid rgba(8,28,59,0.04);
+      box-shadow: 0 6px 18px rgba(9,17,28,0.02);
+      padding: 1rem 0;
+    }
+    
+    .navbar-brand {
+      font-weight: 800;
+      color: var(--nav-dark);
+      font-size: 1.5rem;
+    }
+    
+    .nav-link {
+      color: var(--text-dark) !important;
+      font-weight: 600;
+      position: relative;
+    }
+    
+    .nav-link::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      bottom: -6px;
+      height: 3px;
+      width: 0;
+      background: linear-gradient(90deg, var(--accent-gold), var(--primary-end));
+      transition: width .25s;
+    }
+    
+    .nav-link:hover::after {
+      width: 100%;
+    }
+    
+    .hero {
+      background: linear-gradient(135deg, rgba(8,28,59,0.9), rgba(0,114,255,0.8)), 
+                  url('https://images.unsplash.com/photo-1521737711867-e3b97375f902?auto=format&fit=crop&w=1600&q=80');
+      background-size: cover;
+      background-position: center;
+      color: #fff;
+      padding: 5rem 0;
+      text-align: center;
+      position: relative;
+    }
+    
+    .hero h1 {
+      font-size: 3.5rem;
+      font-weight: 800;
+      margin-bottom: 1.5rem;
+    }
+    
+    .lead {
+      color: rgba(255,255,255,0.9);
+      font-size: 1.25rem;
+      max-width: 700px;
+      margin: 0 auto 2rem;
+    }
+    
+    .section-title {
+      color: var(--nav-dark);
+      font-weight: 800;
+      margin-bottom: 2rem;
+      position: relative;
+      display: inline-block;
+    }
+    
+    .section-title::after {
+      content: '';
+      position: absolute;
+      bottom: -10px;
+      left: 0;
+      width: 60px;
+      height: 4px;
+      background: linear-gradient(90deg, var(--accent-gold), var(--primary-end));
+      border-radius: 2px;
+    }
+    
+    .benefit-card {
+      background: #fff;
+      border-radius: 16px;
+      padding: 2.5rem 1.5rem;
+      box-shadow: var(--card-shadow);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      text-align: center;
+      height: 100%;
+    }
+    
+    .benefit-card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 20px 40px rgba(12,24,48,0.15);
+    }
+    
+    .benefit-icon {
+      font-size: 2.5rem;
+      color: var(--primary-end);
+      margin-bottom: 1.5rem;
+    }
+    
+    .job-card {
+      background: #fff;
+      border-radius: 16px;
+      padding: 2rem;
+      box-shadow: var(--card-shadow);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      height: 100%;
+      border: none;
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .job-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 4px;
+      background: linear-gradient(90deg, var(--primary-start), var(--primary-end));
+    }
+    
+    .job-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 15px 35px rgba(12,24,48,0.12);
+    }
+    
+    .job-tag {
+      display: inline-block;
+      background: rgba(0,114,255,0.1);
+      color: var(--primary-start);
+      padding: 0.25rem 0.75rem;
+      border-radius: 20px;
+      font-size: 0.8rem;
+      font-weight: 600;
+      margin-bottom: 1rem;
+    }
+    
+    .job-title {
+      color: var(--nav-dark);
+      font-weight: 700;
+      margin-bottom: 0.75rem;
+    }
+    
+    .btn-primary {
+      background: linear-gradient(90deg, var(--primary-start), var(--primary-end));
+      border: none;
+      padding: 0.75rem 1.5rem;
+      border-radius: 10px;
+      font-weight: 600;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 15px rgba(0,114,255,0.2);
+    }
+    
+    .btn-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(0,114,255,0.3);
+    }
+    
+    .culture-section {
+      background: linear-gradient(135deg, #f8fbff, #e3f2fd);
+      border-radius: 20px;
+      padding: 4rem 2rem;
+      margin: 4rem 0;
+    }
+    
+    .culture-item {
+      text-align: center;
+      padding: 0 1.5rem;
+    }
+    
+    .culture-icon {
+      font-size: 2.5rem;
+      color: var(--accent-gold);
+      margin-bottom: 1.5rem;
+    }
+    
+    .stats-section {
+      background: linear-gradient(90deg, var(--primary-start), var(--primary-end));
+      color: #fff;
+      padding: 4rem 0;
+      border-radius: 16px;
+      margin: 4rem 0;
+    }
+    
+    .counter {
+      font-size: 2.5rem;
+      font-weight: 800;
+      color: var(--accent-gold);
+    }
+    
+    .small-muted {
+      color: var(--muted);
+    }
+    
+    footer {
+      background: #fff;
+      padding: 3rem 0;
+      border-top: 1px solid rgba(2,6,23,0.04);
+      margin-top: 4rem;
+    }
+    
+    @media (max-width: 768px) {
+      .hero h1 {
+        font-size: 2.5rem;
+      }
+      
+      .hero {
+        padding: 3rem 0;
+      }
+      
+      .culture-section {
+        padding: 3rem 1rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <nav class="navbar navbar-expand-lg">
+    <div class="container">
+      <a class="navbar-brand" href="index.html">High End Credit Union</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navMenu">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navMenu">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+          <li class="nav-item"><a class="nav-link" href="our-story.html">Our Story</a></li>
+          <li class="nav-item"><a class="nav-link active" href="careers.html">Careers</a></li>
+          <li class="nav-item"><a class="nav-link" href="help-center.html">Help Center</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <header class="hero">
+    <div class="container">
+      <h1 data-aos="fade-up">Build Your Career With Us</h1>
+      <p class="lead" data-aos="fade-up" data-aos-delay="100">Join our team and help transform banking for the modern world.</p>
+      <div class="d-flex justify-content-center gap-3 mt-4" data-aos="fade-up" data-aos-delay="200">
+        <a href="#open-roles" class="btn btn-primary btn-lg">View Open Roles</a>
+        <a href="#why-join" class="btn btn-outline-light btn-lg">Why Join Us</a>
+      </div>
+    </div>
+  </header>
+
+  <main class="container py-5">
+    <section class="stats-section text-center" data-aos="fade-up">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-3 mb-4">
+            <div class="counter" data-target="250">0</div>
+            <div class="small-muted">Team Members</div>
+          </div>
+          <div class="col-md-3 mb-4">
+            <div class="counter" data-target="68">0</div>
+            <div class="small-muted">Cities Served</div>
+          </div>
+          <div class="col-md-3 mb-4">
+            <div class="counter" data-target="94">0</div>
+            <div class="small-muted">Employee Satisfaction</div>
+          </div>
+          <div class="col-md-3 mb-4">
+            <div class="counter" data-target="15">0</div>
+            <div class="small-muted">Open Positions</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="why-join" class="mb-5">
+      <h2 class="section-title text-center mb-5">Why Work With Us</h2>
+      <p class="text-center mb-5 small-muted" data-aos="fade-up">We're a fast-growing credit union with a focus on technology, diversity, and member impact.</p>
+      <div class="row g-4">
+        <div class="col-md-4" data-aos="fade-up" data-aos-delay="100">
+          <div class="benefit-card">
+            <div class="benefit-icon">
+              <i class="fas fa-dollar-sign"></i>
+            </div>
+            <h4>Competitive Compensation</h4>
+            <p class="small-muted">Market-leading salary, equity options, and comprehensive benefits package.</p>
+          </div>
+        </div>
+        <div class="col-md-4" data-aos="fade-up" data-aos-delay="200">
+          <div class="benefit-card">
+            <div class="benefit-icon">
+              <i class="fas fa-laptop-house"></i>
+            </div>
+            <h4>Flexible Work</h4>
+            <p class="small-muted">Remote-first culture with flexible schedules and work-life balance focus.</p>
+          </div>
+        </div>
+        <div class="col-md-4" data-aos="fade-up" data-aos-delay="300">
+          <div class="benefit-card">
+            <div class="benefit-icon">
+              <i class="fas fa-chart-line"></i>
+            </div>
+            <h4>Growth Opportunities</h4>
+            <p class="small-muted">Professional development, training programs, and clear career progression paths.</p>
+          </div>
+        </div>
+        <div class="col-md-4" data-aos="fade-up" data-aos-delay="100">
+          <div class="benefit-card">
+            <div class="benefit-icon">
+              <i class="fas fa-heart"></i>
+            </div>
+            <h4>Health & Wellness</h4>
+            <p class="small-muted">Comprehensive health insurance, mental health support, and wellness programs.</p>
+          </div>
+        </div>
+        <div class="col-md-4" data-aos="fade-up" data-aos-delay="200">
+          <div class="benefit-card">
+            <div class="benefit-icon">
+              <i class="fas fa-users"></i>
+            </div>
+            <h4>Inclusive Culture</h4>
+            <p class="small-muted">Diverse, equitable, and inclusive workplace where everyone can thrive.</p>
+          </div>
+        </div>
+        <div class="col-md-4" data-aos="fade-up" data-aos-delay="300">
+          <div class="benefit-card">
+            <div class="benefit-icon">
+              <i class="fas fa-gift"></i>
+            </div>
+            <h4>Generous Time Off</h4>
+            <p class="small-muted">Unlimited PTO, paid parental leave, and company holidays.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="culture-section text-center" data-aos="fade-up">
+      <div class="container">
+        <h2 class="section-title mb-5">Our Culture</h2>
+        <div class="row">
+          <div class="col-md-4 culture-item" data-aos="fade-up" data-aos-delay="100">
+            <div class="culture-icon">
+              <i class="fas fa-lightbulb"></i>
+            </div>
+            <h4>Innovation</h4>
+            <p class="small-muted">We encourage creative thinking and embrace new ideas that push boundaries.</p>
+          </div>
+          <div class="col-md-4 culture-item" data-aos="fade-up" data-aos-delay="200">
+            <div class="culture-icon">
+              <i class="fas fa-handshake"></i>
+            </div>
+            <h4>Collaboration</h4>
+            <p class="small-muted">We work together across teams to achieve our shared mission.</p>
+          </div>
+          <div class="col-md-4 culture-item" data-aos="fade-up" data-aos-delay="300">
+            <div class="culture-icon">
+              <i class="fas fa-rocket"></i>
+            </div>
+            <h4>Impact</h4>
+            <p class="small-muted">We measure success by the positive difference we make for our members.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="open-roles">
+      <h2 class="section-title text-center mb-5">Open Roles</h2>
+      <p class="text-center mb-5 small-muted" data-aos="fade-up">Join our mission to make banking better for everyone.</p>
+      <div class="row g-4">
+        <div class="col-md-6" data-aos="fade-up" data-aos-delay="100">
+          <div class="job-card">
+            <span class="job-tag">Engineering</span>
+            <h4 class="job-title">Full Stack Engineer</h4>
+            <p class="small-muted mb-3">Build customer-facing applications and APIs that power our digital banking platform.</p>
+            <div class="d-flex justify-content-between align-items-center mb-3">
+              <span class="small-muted"><i class="fas fa-map-marker-alt me-1"></i> Remote</span>
+              <span class="small-muted"><i class="fas fa-clock me-1"></i> Full-time</span>
+            </div>
+            <a class="btn btn-primary w-100" href="mailto:careers@highendcu.com?subject=Application: Full Stack Engineer">Apply Now</a>
+          </div>
+        </div>
+        <div class="col-md-6" data-aos="fade-up" data-aos-delay="200">
+          <div class="job-card">
+            <span class="job-tag">Product</span>
+            <h4 class="job-title">Product Manager</h4>
+            <p class="small-muted mb-3">Lead product discovery and delivery for our member-facing digital experiences.</p>
+            <div class="d-flex justify-content-between align-items-center mb-3">
+              <span class="small-muted"><i class="fas fa-map-marker-alt me-1"></i> Remote</span>
+              <span class="small-muted"><i class="fas fa-clock me-1"></i> Full-time</span>
+            </div>
+            <a class="btn btn-primary w-100" href="mailto:careers@highendcu.com?subject=Application: Product Manager">Apply Now</a>
+          </div>
+        </div>
+        <div class="col-md-6" data-aos="fade-up" data-aos-delay="100">
+          <div class="job-card">
+            <span class="job-tag">Customer Support</span>
+            <h4 class="job-title">Customer Support Specialist</h4>
+            <p class="small-muted mb-3">Help members via phone, chat, and email with banking questions and issues.</p>
+            <div class="d-flex justify-content-between align-items-center mb-3">
+              <span class="small-muted"><i class="fas fa-map-marker-alt me-1"></i> Remote</span>
+              <span class="small-muted"><i class="fas fa-clock me-1"></i> Full-time</span>
+            </div>
+            <a class="btn btn-primary w-100" href="mailto:careers@highendcu.com?subject=Application: Customer Support Specialist">Apply Now</a>
+          </div>
+        </div>
+        <div class="col-md-6" data-aos="fade-up" data-aos-delay="200">
+          <div class="job-card">
+            <span class="job-tag">Compliance</span>
+            <h4 class="job-title">Compliance Analyst</h4>
+            <p class="small-muted mb-3">Ensure regulatory compliance across our banking products and operations.</p>
+            <div class="d-flex justify-content-between align-items-center mb-3">
+              <span class="small-muted"><i class="fas fa-map-marker-alt me-1"></i> Remote</span>
+              <span class="small-muted"><i class="fas fa-clock me-1"></i> Full-time</span>
+            </div>
+            <a class="btn btn-primary w-100" href="mailto:careers@highendcu.com?subject=Application: Compliance Analyst">Apply Now</a>
+          </div>
+        </div>
+        <div class="col-md-6" data-aos="fade-up" data-aos-delay="100">
+          <div class="job-card">
+            <span class="job-tag">Marketing</span>
+            <h4 class="job-title">Digital Marketing Specialist</h4>
+            <p class="small-muted mb-3">Develop and execute digital marketing campaigns to grow our member base.</p>
+            <div class="d-flex justify-content-between align-items-center mb-3">
+              <span class="small-muted"><i class="fas fa-map-marker-alt me-1"></i> Remote</span>
+              <span class="small-muted"><i class="fas fa-clock me-1"></i> Full-time</span>
+            </div>
+            <a class="btn btn-primary w-100" href="mailto:careers@highendcu.com?subject=Application: Digital Marketing Specialist">Apply Now</a>
+          </div>
+        </div>
+        <div class="col-md-6" data-aos="fade-up" data-aos-delay="200">
+          <div class="job-card">
+            <span class="job-tag">Data</span>
+            <h4 class="job-title">Data Analyst</h4>
+            <p class="small-muted mb-3">Analyze member data to derive insights and drive business decisions.</p>
+            <div class="d-flex justify-content-between align-items-center mb-3">
+              <span class="small-muted"><i class="fas fa-map-marker-alt me-1"></i> Remote</span>
+              <span class="small-muted"><i class="fas fa-clock me-1"></i> Full-time</span>
+            </div>
+            <a class="btn btn-primary w-100" href="mailto:careers@highendcu.com?subject=Application: Data Analyst">Apply Now</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="text-center mt-5" data-aos="fade-up">
+      <h3 class="mb-3">Don't see the perfect role?</h3>
+      <p class="small-muted mb-4">We're always looking for talented people. Send us your resume and we'll contact you when a matching position opens.</p>
+      <a href="mailto:careers@highendcu.com" class="btn btn-outline-primary btn-lg">Send General Application</a>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container">
+      <div class="row gy-4">
+        <div class="col-md-4">
+          <h5>High End Credit Union</h5>
+          <p class="small-muted">Your Financial Success, Our Priority</p>
+        </div>
+        <div class="col-md-4">
+          <h6>Quick Links</h6>
+          <div class="d-flex flex-column">
+            <a href="index.html" class="small-muted mb-1">Home</a>
+            <a href="our-story.html" class="small-muted mb-1">Our Story</a>
+            <a href="help-center.html" class="small-muted mb-1">Help Center</a>
+            <a href="security.html" class="small-muted mb-1">Security</a>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <h6>Contact</h6>
+          <div class="d-flex flex-column">
+            <span class="small-muted mb-1">careers@highendcu.com</span>
+            <span class="small-muted mb-1">+1-802-572-4519</span>
+            <span class="small-muted">Mon-Fri: 9am-5pm EST</span>
+          </div>
+        </div>
+      </div>
+      <div class="text-center mt-4 pt-3 border-top">
+        <span class="small-muted">© 2025 High End Credit Union. All rights reserved.</span>
+      </div>
+    </div>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
+  <script>
+    // Initialize AOS animations
+    AOS.init({
+      duration: 800,
+      once: true,
+      offset: 100
+    });
+    
+    // Counter animation
+    document.addEventListener('DOMContentLoaded', function() {
+      const counters = document.querySelectorAll('.counter');
+      
+      counters.forEach(counter => {
+        const animate = () => {
+          const target = +counter.getAttribute('data-target');
+          let current = +counter.innerText.replace(/,/g, '') || 0;
+          const increment = Math.ceil(target / 100);
+          
+          if (current < target) {
+            counter.innerText = Math.min(current + increment, target).toLocaleString();
+            requestAnimationFrame(animate);
+          } else {
+            counter.innerText = target.toLocaleString();
+          }
+        };
+        
+        const observer = new IntersectionObserver((entries, obs) => {
+          entries.forEach(entry => {
+            if (entry.isIntersecting) {
+              animate();
+              obs.disconnect();
+            }
+          });
+        }, { threshold: 0.3 });
+        
+        observer.observe(counter);
+      });
+    });
+  </script>
+</body>
+</html>

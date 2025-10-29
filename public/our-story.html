@@ -1,0 +1,471 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Our Story — High End Credit Union</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <link href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.5.0/css/all.min.css" rel="stylesheet" />
+  <link href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" rel="stylesheet" />
+  <style>
+    :root {
+      --primary-start: #0072ff;
+      --primary-end: #00c6ff;
+      --accent-gold: #F4B400;
+      --nav-dark: #081C3B;
+      --text-dark: #0F172A;
+      --muted: #6B7280;
+      --bg-soft: #F9FBFD;
+      --card-shadow: 0 12px 30px rgba(12,24,48,0.08);
+    }
+    
+    body {
+      font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, Arial;
+      background: var(--bg-soft);
+      color: var(--text-dark);
+      margin: 0;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+    
+    .navbar {
+      background: #fff;
+      border-bottom: 1px solid rgba(8,28,59,0.04);
+      box-shadow: 0 6px 18px rgba(9,17,28,0.02);
+    }
+    
+    .navbar-brand {
+      font-weight: 800;
+      color: var(--nav-dark);
+    }
+    
+    .nav-link {
+      color: var(--text-dark) !important;
+      font-weight: 600;
+      position: relative;
+    }
+    
+    .nav-link::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      bottom: -6px;
+      height: 3px;
+      width: 0;
+      background: linear-gradient(90deg, var(--accent-gold), var(--primary-end));
+      transition: width .25s;
+    }
+    
+    .nav-link:hover::after {
+      width: 100%;
+    }
+    
+    .hero {
+      background: linear-gradient(135deg, rgba(8,28,59,0.9), rgba(0,114,255,0.8)), 
+                  url('https://images.unsplash.com/photo-1554224155-6726b3ff858f?auto=format&fit=crop&w=1600&q=80');
+      background-size: cover;
+      background-position: center;
+      color: #fff;
+      padding: 5rem 0;
+      text-align: center;
+      position: relative;
+    }
+    
+    .hero h1 {
+      font-size: 3.5rem;
+      font-weight: 800;
+      margin-bottom: 1rem;
+    }
+    
+    .lead {
+      color: rgba(255,255,255,0.9);
+      font-size: 1.25rem;
+      max-width: 700px;
+      margin: 0 auto 2rem;
+    }
+    
+    .section-title {
+      color: var(--nav-dark);
+      font-weight: 800;
+      margin-bottom: 2rem;
+      position: relative;
+      display: inline-block;
+    }
+    
+    .section-title::after {
+      content: '';
+      position: absolute;
+      bottom: -10px;
+      left: 0;
+      width: 60px;
+      height: 4px;
+      background: linear-gradient(90deg, var(--accent-gold), var(--primary-end));
+      border-radius: 2px;
+    }
+    
+    .timeline {
+      position: relative;
+      padding-left: 2rem;
+    }
+    
+    .timeline::before {
+      content: '';
+      position: absolute;
+      left: 7px;
+      top: 0;
+      bottom: 0;
+      width: 3px;
+      background: linear-gradient(to bottom, var(--primary-start), var(--primary-end));
+      border-radius: 3px;
+    }
+    
+    .timeline .item {
+      position: relative;
+      padding: 1.5rem 0 1.5rem 2rem;
+    }
+    
+    .timeline .item::before {
+      content: '';
+      position: absolute;
+      left: -10px;
+      top: 2rem;
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      background: var(--accent-gold);
+      border: 4px solid white;
+      box-shadow: 0 0 0 3px var(--accent-gold);
+    }
+    
+    .timeline strong {
+      color: var(--primary-start);
+      font-size: 1.1rem;
+    }
+    
+    .card {
+      border: none;
+      border-radius: 12px;
+      box-shadow: var(--card-shadow);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      overflow: hidden;
+    }
+    
+    .card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 20px 40px rgba(12,24,48,0.15);
+    }
+    
+    .leader-card img {
+      height: 250px;
+      object-fit: cover;
+      transition: transform 0.5s ease;
+    }
+    
+    .leader-card:hover img {
+      transform: scale(1.05);
+    }
+    
+    .leader-card h5 {
+      color: var(--nav-dark);
+      font-weight: 700;
+      margin-top: 1rem;
+    }
+    
+    .leader-card .small-muted {
+      color: var(--muted);
+      font-weight: 500;
+    }
+    
+    .stats-section {
+      background: linear-gradient(90deg, var(--primary-start), var(--primary-end));
+      color: #fff;
+      padding: 4rem 0;
+      border-radius: 16px;
+      margin: 4rem 0;
+    }
+    
+    .counter {
+      font-size: 2.5rem;
+      font-weight: 800;
+      color: var(--accent-gold);
+    }
+    
+    .values-section .value-card {
+      text-align: center;
+      padding: 2rem 1.5rem;
+      border-radius: 16px;
+      background: white;
+      box-shadow: var(--card-shadow);
+      transition: transform 0.3s ease;
+      height: 100%;
+    }
+    
+    .values-section .value-card:hover {
+      transform: translateY(-5px);
+    }
+    
+    .value-icon {
+      font-size: 2.5rem;
+      color: var(--primary-end);
+      margin-bottom: 1rem;
+    }
+    
+    footer {
+      background: #fff;
+      padding: 3rem 0;
+      border-top: 1px solid rgba(2,6,23,0.04);
+      margin-top: 4rem;
+    }
+    
+    .small-muted {
+      color: var(--muted);
+    }
+    
+    @media (max-width: 768px) {
+      .hero h1 {
+        font-size: 2.5rem;
+      }
+      
+      .hero {
+        padding: 3rem 0;
+      }
+      
+      .timeline {
+        padding-left: 1.5rem;
+      }
+      
+      .timeline .item {
+        padding-left: 1.5rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <nav class="navbar navbar-expand-lg">
+    <div class="container">
+      <a class="navbar-brand" href="index.html">High End Credit Union</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navMenu">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navMenu">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+          <li class="nav-item"><a class="nav-link" href="careers.html">Careers</a></li>
+          <li class="nav-item"><a class="nav-link" href="help-center.html">Help Center</a></li>
+          <li class="nav-item"><a class="nav-link active" href="our-story.html">Our Story</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <header class="hero">
+    <div class="container">
+      <h1 data-aos="fade-up">Our Story</h1>
+      <p class="lead" data-aos="fade-up" data-aos-delay="100">Built to make banking simpler, fairer and more human.</p>
+      <div class="d-flex justify-content-center gap-3 mt-4" data-aos="fade-up" data-aos-delay="200">
+        <a href="register.html" class="btn btn-primary btn-lg">Join Us</a>
+        <a href="careers.html" class="btn btn-outline-light btn-lg">Careers</a>
+      </div>
+    </div>
+  </header>
+
+  <main class="container py-5">
+    <section class="row align-items-center mb-5">
+      <div class="col-md-6" data-aos="fade-right">
+        <h2 class="section-title">Humble Beginnings</h2>
+        <p class="mb-4">We started as a community initiative in 2015 with a simple mission: to bring fair, transparent banking to underserved members. What began as a small local effort has grown into a modern credit union that combines traditional trust with cutting-edge technology.</p>
+        <p>Our founders believed that banking should be a partnership, not just a transaction. That philosophy remains at the core of everything we do today.</p>
+        <div class="mt-4">
+          <a href="#values" class="btn btn-outline-primary">Our Values</a>
+        </div>
+      </div>
+      <div class="col-md-6" data-aos="fade-left">
+        <img src="https://images.unsplash.com/photo-1542223616-3f7b1b5d2b82?auto=format&fit=crop&w=900&q=80" alt="Our team" class="img-fluid rounded shadow" loading="lazy">
+      </div>
+    </section>
+
+    <section class="stats-section text-center" data-aos="fade-up">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-3 mb-4">
+            <div class="counter" data-target="155020">0</div>
+            <div class="small-muted">Happy Members</div>
+          </div>
+          <div class="col-md-3 mb-4">
+            <div class="counter" data-target="68">0</div>
+            <div class="small-muted">Branches Nationwide</div>
+          </div>
+          <div class="col-md-3 mb-4">
+            <div class="counter" data-target="97">0</div>
+            <div class="small-muted">Member Satisfaction</div>
+          </div>
+          <div class="col-md-3 mb-4">
+            <div class="counter" data-target="9">0</div>
+            <div class="small-muted">Years of Service</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="mb-5">
+      <h3 class="section-title text-center mb-5">Our Journey</h3>
+      <div class="timeline" data-aos="fade-up">
+        <div class="item">
+          <strong>2015</strong> — Founded by a small team with a vision for fair, transparent banking.
+        </div>
+        <div class="item">
+          <strong>2018</strong> — Launched our mobile banking platform and expanded membership nationwide.
+        </div>
+        <div class="item">
+          <strong>2021</strong> — Reached 50,000 members and expanded our product suite with innovative financial tools.
+        </div>
+        <div class="item">
+          <strong>2024</strong> — Introduced AI-driven financial insights and enhanced security features.
+        </div>
+      </div>
+    </section>
+
+    <section id="values" class="values-section mb-5">
+      <h3 class="section-title text-center mb-5">Our Values</h3>
+      <div class="row g-4">
+        <div class="col-md-4" data-aos="fade-up" data-aos-delay="100">
+          <div class="value-card">
+            <div class="value-icon">
+              <i class="fas fa-handshake"></i>
+            </div>
+            <h4>Trust & Transparency</h4>
+            <p class="small-muted">We believe in clear communication and honest relationships with our members.</p>
+          </div>
+        </div>
+        <div class="col-md-4" data-aos="fade-up" data-aos-delay="200">
+          <div class="value-card">
+            <div class="value-icon">
+              <i class="fas fa-lightbulb"></i>
+            </div>
+            <h4>Innovation</h4>
+            <p class="small-muted">We continuously evolve to provide cutting-edge financial solutions.</p>
+          </div>
+        </div>
+        <div class="col-md-4" data-aos="fade-up" data-aos-delay="300">
+          <div class="value-card">
+            <div class="value-icon">
+              <i class="fas fa-users"></i>
+            </div>
+            <h4>Community</h4>
+            <p class="small-muted">We're committed to supporting the communities we serve.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <h3 class="section-title text-center mb-5">Leadership Team</h3>
+      <div class="row g-4">
+        <div class="col-md-4" data-aos="fade-up" data-aos-delay="100">
+          <div class="card leader-card">
+            <img src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&w=600&q=80" alt="Alex Johnson" class="img-fluid" loading="lazy">
+            <div class="card-body text-center">
+              <h5>Alex Johnson</h5>
+              <p class="small-muted">Chief Executive Officer</p>
+              <p class="small">Alex founded High End CU with a vision to transform personal banking through technology and transparency.</p>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4" data-aos="fade-up" data-aos-delay="200">
+          <div class="card leader-card">
+            <img src="https://images.unsplash.com/photo-1545996124-1d0b3b1c7f5a?auto=format&fit=crop&w=600&q=80" alt="Samira Lee" class="img-fluid" loading="lazy">
+            <div class="card-body text-center">
+              <h5>Samira Lee</h5>
+              <p class="small-muted">Chief Technology Officer</p>
+              <p class="small">Samira leads our technology initiatives, ensuring our platforms are secure, innovative, and user-friendly.</p>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4" data-aos="fade-up" data-aos-delay="300">
+          <div class="card leader-card">
+            <img src="https://images.unsplash.com/photo-1545996104-ef2b9d6a9a84?auto=format&fit=crop&w=600&q=80" alt="Michael Carter" class="img-fluid" loading="lazy">
+            <div class="card-body text-center">
+              <h5>Michael Carter</h5>
+              <p class="small-muted">Head of Products</p>
+              <p class="small">Michael develops financial products that meet the evolving needs of our diverse membership.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container">
+      <div class="row gy-4">
+        <div class="col-md-4">
+          <h5>High End Credit Union</h5>
+          <p class="small-muted">Your Financial Success, Our Priority</p>
+        </div>
+        <div class="col-md-4">
+          <h6>Quick Links</h6>
+          <div class="d-flex flex-column">
+            <a href="index.html" class="small-muted mb-1">Home</a>
+            <a href="careers.html" class="small-muted mb-1">Careers</a>
+            <a href="help-center.html" class="small-muted mb-1">Help Center</a>
+            <a href="security.html" class="small-muted mb-1">Security</a>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <h6>Contact</h6>
+          <div class="d-flex flex-column">
+            <span class="small-muted mb-1">support@highendcu.com</span>
+            <span class="small-muted mb-1">+1-802-572-4519</span>
+            <span class="small-muted">Mon-Fri: 8am-8pm EST</span>
+          </div>
+        </div>
+      </div>
+      <div class="text-center mt-4 pt-3 border-top">
+        <span class="small-muted">© 2025 High End Credit Union. All rights reserved.</span>
+      </div>
+    </div>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
+  <script>
+    // Initialize AOS animations
+    AOS.init({
+      duration: 800,
+      once: true,
+      offset: 100
+    });
+    
+    // Counter animation
+    document.addEventListener('DOMContentLoaded', function() {
+      const counters = document.querySelectorAll('.counter');
+      
+      counters.forEach(counter => {
+        const animate = () => {
+          const target = +counter.getAttribute('data-target');
+          let current = +counter.innerText.replace(/,/g, '') || 0;
+          const increment = Math.ceil(target / 100);
+          
+          if (current < target) {
+            counter.innerText = Math.min(current + increment, target).toLocaleString();
+            requestAnimationFrame(animate);
+          } else {
+            counter.innerText = target.toLocaleString();
+          }
+        };
+        
+        const observer = new IntersectionObserver((entries, obs) => {
+          entries.forEach(entry => {
+            if (entry.isIntersecting) {
+              animate();
+              obs.disconnect();
+            }
+          });
+        }, { threshold: 0.3 });
+        
+        observer.observe(counter);
+      });
+    });
+  </script>
+</body>
+</html>

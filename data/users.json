@@ -1,0 +1,40 @@
+{
+  "users": [
+    {
+      "id": "1713081667816",
+      "name": "John Doe",
+      "email": "johndoe@example.com",
+      "password": "$2a$10$placeholderhashedpassword",
+      "status": "active",
+      "checking": {
+        "accountNumber": "9367398293",
+        "balance": 0,
+        "transactions": []
+      },
+      "savings": {
+        "accountNumber": "6430582743",
+        "balance": 0,
+        "transactions": []
+      },
+      "selectedAccountType": "checking"
+    },
+    {
+      "id": "1713082008592",
+      "name": "Richie",
+      "email": "rb1750067@gmail.com",
+      "password": "$2a$10$ZDKWcVEmV0H8gVOeEqdp8eIvS8im7Er7vtK8iAUYCEa9RGcfS0ZTS",
+      "status": "active",
+      "checking": {
+        "accountNumber": "2523431501",
+        "balance": 0,
+        "transactions": []
+      },
+      "savings": {
+        "accountNumber": "4605927335",
+        "balance": 0,
+        "transactions": []
+      },
+      "selectedAccountType": "checking"
+    }
+  ]
+}

@@ -1,0 +1,828 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+  <meta name="referrer" content="no-referrer">
+  <meta name="robots" content="noindex,nofollow">
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>High End CU - Member Enrollment</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"/>
+  <link href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.5.0/css/all.min.css" rel="stylesheet"/>
+  <link href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" rel="stylesheet"/>
+  <style>
+    :root {
+      --primary-blue: #00447C;
+      --secondary-blue: #0066A1;
+      --accent-gold: #C5A047;
+      --dark-navy: #0a2342;
+      --light-blue: #e3f2fd;
+      --off-white: #F8F9FC;
+      --text-dark: #2c3e50;
+      --text-light: #f8f9fa;
+      --muted: #6c757d;
+      --success: #28a745;
+      --card-shadow: 0 12px 30px rgba(12,24,48,0.15);
+      --gradient-primary: linear-gradient(135deg, var(--primary-blue) 0%, var(--secondary-blue) 100%);
+      --gradient-gold: linear-gradient(135deg, var(--accent-gold) 0%, #d4af37 100%);
+    }
+
+    body {
+      font-family: 'Inter', system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+      background: var(--gradient-primary);
+      color: var(--text-dark);
+      min-height: 100vh;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    .header {
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(10px);
+      padding: 1.5rem 0;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+      border-bottom: 3px solid var(--accent-gold);
+    }
+
+    .brand-title {
+      color: var(--primary-blue) !important;
+      font-weight: 800;
+      font-size: 2rem;
+      letter-spacing: -0.5px;
+    }
+
+    .motto {
+      color: var(--secondary-blue);
+      font-size: 1rem;
+      font-weight: 500;
+      opacity: 0.9;
+    }
+
+    .auth-card {
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(20px);
+      border-radius: 24px;
+      box-shadow: var(--card-shadow);
+      padding: 3rem;
+      margin: 2rem auto;
+      max-width: 1000px;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .auth-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 4px;
+      background: var(--gradient-gold);
+    }
+
+    .progress-steps {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 3rem;
+      position: relative;
+    }
+
+    .progress-steps::before {
+      content: '';
+      position: absolute;
+      top: 20px;
+      left: 0;
+      right: 0;
+      height: 3px;
+      background: #e9ecef;
+      z-index: 1;
+    }
+
+    .step {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      position: relative;
+      z-index: 2;
+      flex: 1;
+    }
+
+    .step-number {
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      background: white;
+      color: var(--muted);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      margin-bottom: 0.5rem;
+      transition: all 0.4s ease;
+      border: 3px solid #e9ecef;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    }
+
+    .step.active .step-number {
+      background: var(--gradient-gold);
+      color: white;
+      border-color: var(--accent-gold);
+      transform: scale(1.1);
+      box-shadow: 0 6px 20px rgba(197, 160, 71, 0.3);
+    }
+
+    .step:not(.active) .step-number {
+      background: white;
+      border: 3px solid #e9ecef;
+    }
+
+    .step div:last-child {
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: var(--muted);
+      text-align: center;
+    }
+
+    .step.active div:last-child {
+      color: var(--primary-blue);
+    }
+
+    .form-section {
+      display: none;
+      opacity: 0;
+      transform: translateY(20px);
+      transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .form-section.active {
+      display: block;
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .auth-header {
+      color: var(--primary-blue);
+      font-weight: 800;
+      margin-bottom: 2rem;
+      font-size: 2.2rem;
+      text-align: center;
+    }
+
+    .account-selector {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 1.5rem;
+      margin: 2.5rem 0;
+    }
+
+    .account-card {
+      background: white;
+      border: 2px solid #e9ecef;
+      border-radius: 16px;
+      padding: 2rem 1.5rem;
+      text-align: center;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .account-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(0, 100, 255, 0.05), transparent);
+      transition: left 0.6s ease;
+    }
+
+    .account-card:hover::before {
+      left: 100%;
+    }
+
+    .account-card:hover {
+      border-color: var(--primary-blue);
+      transform: translateY(-8px);
+      box-shadow: 0 12px 30px rgba(0, 68, 124, 0.15);
+    }
+
+    .account-card.selected {
+      border-color: var(--accent-gold);
+      background: linear-gradient(135deg, #fff9e6, #fff3cd);
+      transform: translateY(-4px);
+      box-shadow: 0 8px 25px rgba(197, 160, 71, 0.2);
+    }
+
+    .account-card i {
+      font-size: 2.8rem;
+      color: var(--primary-blue);
+      margin-bottom: 1rem;
+      transition: all 0.3s ease;
+    }
+
+    .account-card.selected i {
+      color: var(--accent-gold);
+      transform: scale(1.1);
+    }
+
+    .account-card h5 {
+      color: var(--primary-blue);
+      font-weight: 700;
+      margin-bottom: 0.5rem;
+      font-size: 1.1rem;
+    }
+
+    .account-card p {
+      color: var(--muted);
+      font-size: 0.9rem;
+      margin: 0;
+      font-weight: 500;
+    }
+
+    .btn-primary {
+      background: var(--gradient-gold);
+      border: none;
+      color: var(--primary-blue);
+      padding: 0.875rem 2.5rem;
+      font-weight: 700;
+      border-radius: 12px;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 15px rgba(197, 160, 71, 0.3);
+      font-size: 1rem;
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 8px 25px rgba(197, 160, 71, 0.4);
+      color: var(--primary-blue);
+    }
+
+    .btn-outline-primary {
+      border: 2px solid var(--primary-blue);
+      color: var(--primary-blue);
+      background: transparent;
+      padding: 0.875rem 2rem;
+      font-weight: 600;
+      border-radius: 12px;
+      transition: all 0.3s ease;
+    }
+
+    .btn-outline-primary:hover {
+      background: var(--primary-blue);
+      color: white;
+      transform: translateY(-2px);
+      box-shadow: 0 4px 15px rgba(0, 68, 124, 0.2);
+    }
+
+    .form-control, .form-select {
+      border: 2px solid #e9ecef;
+      border-radius: 12px;
+      padding: 0.875rem 1rem;
+      transition: all 0.3s ease;
+      font-size: 1rem;
+      background: white;
+    }
+
+    .form-control:focus, .form-select:focus {
+      border-color: var(--accent-gold);
+      box-shadow: 0 0 0 0.2rem rgba(197, 160, 71, 0.15);
+    }
+
+    .form-label {
+      font-weight: 600;
+      color: var(--primary-blue);
+      margin-bottom: 0.5rem;
+    }
+
+    .dual-citizenship-group {
+      background: var(--light-blue);
+      border-radius: 12px;
+      padding: 1.5rem;
+      margin: 1.5rem 0;
+      border-left: 4px solid var(--accent-gold);
+    }
+
+    /* Success Modal Styles */
+    .success-modal {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(10, 35, 66, 0.8);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      z-index: 9999;
+      backdrop-filter: blur(8px);
+    }
+
+    .success-modal.show {
+      display: flex;
+      animation: modalFadeIn 0.4s ease;
+    }
+
+    .success-content {
+      background: white;
+      border-radius: 24px;
+      padding: 3rem;
+      max-width: 520px;
+      width: 90%;
+      text-align: center;
+      box-shadow: var(--card-shadow);
+      transform: scale(0.9);
+      animation: modalScaleIn 0.4s ease 0.1s forwards;
+      border: 2px solid var(--accent-gold);
+    }
+
+    .success-icon {
+      font-size: 4.5rem;
+      color: var(--success);
+      margin-bottom: 1.5rem;
+    }
+
+    .success-title {
+      color: var(--primary-blue);
+      font-weight: 800;
+      font-size: 2rem;
+      margin-bottom: 1rem;
+    }
+
+    .success-details {
+      background: var(--light-blue);
+      border-radius: 16px;
+      padding: 2rem;
+      margin: 2rem 0;
+      text-align: left;
+      border: 1px solid rgba(0, 68, 124, 0.1);
+    }
+
+    .success-detail {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 1rem;
+      padding-bottom: 1rem;
+      border-bottom: 1px solid rgba(0, 68, 124, 0.1);
+    }
+
+    .success-detail:last-child {
+      border-bottom: none;
+      margin-bottom: 0;
+    }
+
+    .detail-label {
+      font-weight: 600;
+      color: var(--primary-blue);
+    }
+
+    .detail-value {
+      color: var(--text-dark);
+      font-weight: 500;
+      text-align: right;
+    }
+
+    .bottom-links {
+      background: rgba(255, 255, 255, 0.95);
+      padding: 4rem 0 3rem;
+      margin-top: 4rem;
+      border-top: 3px solid var(--accent-gold);
+    }
+
+    .bottom-links h5 {
+      color: var(--primary-blue);
+      font-weight: 700;
+      margin-bottom: 1.5rem;
+      font-size: 1.2rem;
+      border-bottom: 2px solid var(--accent-gold);
+      padding-bottom: 0.75rem;
+      display: inline-block;
+    }
+
+    .bottom-links p {
+      color: var(--muted);
+      margin-bottom: 0.75rem;
+      cursor: pointer;
+      transition: color 0.3s ease;
+      font-weight: 500;
+    }
+
+    .bottom-links p:hover {
+      color: var(--primary-blue);
+      transform: translateX(5px);
+    }
+
+    @keyframes modalFadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    @keyframes modalScaleIn {
+      from { transform: scale(0.9); }
+      to { transform: scale(1); }
+    }
+
+    /* Responsive Design */
+    @media (max-width: 768px) {
+      .auth-card {
+        padding: 2rem 1.5rem;
+        margin: 1rem;
+      }
+
+      .progress-steps {
+        flex-direction: column;
+        gap: 1.5rem;
+      }
+
+      .progress-steps::before {
+        display: none;
+      }
+
+      .step {
+        flex-direction: row;
+        gap: 1rem;
+        text-align: left;
+      }
+
+      .step-number {
+        margin-bottom: 0;
+      }
+
+      .account-selector {
+        grid-template-columns: 1fr;
+      }
+
+      .success-content {
+        padding: 2rem 1.5rem;
+      }
+
+      .auth-header {
+        font-size: 1.8rem;
+      }
+    }
+
+    /* Loading animation */
+    .spinner-border {
+      color: var(--accent-gold);
+    }
+
+    /* Invalid feedback styling */
+    .invalid-feedback {
+      color: #dc3545;
+      font-weight: 500;
+    }
+
+    .was-validated .form-control:invalid,
+    .was-validated .form-select:invalid {
+      border-color: #dc3545;
+    }
+
+    .was-validated .form-control:valid,
+    .was-validated .form-select:valid {
+      border-color: var(--success);
+    }
+  </style>
+</head>
+
+<body>
+  <!-- Header -->
+  <div class="header">
+    <div class="container">
+      <div class="d-flex justify-content-between align-items-center flex-wrap">
+        <div>
+          <span class="brand-title">High End Credit Union</span>
+          <span class="motto d-block mt-1">Your Financial Success, Our Priority</span>
+        </div>
+        <a class="btn btn-outline-primary mt-2 mt-md-0" href="index.html">
+          <i class="fas fa-home me-2"></i> Home
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Registration Form -->
+  <div class="container">
+    <div class="auth-card" data-aos="fade-up">
+      <!-- Progress Steps -->
+      <div class="progress-steps mb-5">
+        <div class="step active"><div class="step-number">1</div>Select Account</div>
+        <div class="step"><div class="step-number">2</div>Personal Info</div>
+        <div class="step"><div class="step-number">3</div>Review</div>
+        <div class="step"><div class="step-number">4</div>Email Verify</div>
+        <div class="step"><div class="step-number">5</div>Credentials</div>
+      </div>
+
+      <!-- Step 1: Account Selection -->
+      <div class="form-section active" id="accountSelection">
+        <h2 class="auth-header">Select Financial Products</h2>
+        <div class="account-selector">
+          <div class="account-card" data-account="platinum-checking">
+            <i class="fas fa-wallet"></i>
+            <h5>Platinum Checking</h5>
+            <p>2.15% APY • No Fees</p>
+          </div>
+          <div class="account-card" data-account="high-savings">
+            <i class="fas fa-piggy-bank"></i>
+            <h5>High-Yield Savings</h5>
+            <p>3.75% APY • FDIC Insured</p>
+          </div>
+          <div class="account-card" data-account="cd">
+            <i class="fas fa-certificate"></i>
+            <h5>Certificates of Deposit</h5>
+            <p>Fixed Term • High APY</p>
+          </div>
+          <div class="account-card" data-account="ira">
+            <i class="fas fa-user-shield"></i>
+            <h5>IRA Accounts</h5>
+            <p>Tax Benefits • Retirement</p>
+          </div>
+          <div class="account-card" data-account="mortgage">
+            <i class="fas fa-home"></i>
+            <h5>Mortgages</h5>
+            <p>Competitive Rates</p>
+          </div>
+          <div class="account-card" data-account="auto-loan">
+            <i class="fas fa-car"></i>
+            <h5>Auto Loans</h5>
+            <p>Fast Approval</p>
+          </div>
+          <div class="account-card" data-account="personal-loan">
+            <i class="fas fa-hand-holding-usd"></i>
+            <h5>Personal Loans</h5>
+            <p>Flexible Terms</p>
+          </div>
+        </div>
+        <div class="text-center mt-4">
+          <button class="btn btn-primary" id="btnToPersonalInfo" type="button">Continue</button>
+        </div>
+      </div>
+
+      <!-- Step 2: Personal Information -->
+      <div class="form-section" id="personalInfo">
+        <h2 class="auth-header">Personal Information</h2>
+        <form id="personalInfoForm" novalidate>
+          <div class="row">
+            <div class="col-md-6 mb-3">
+              <label class="form-label" for="firstName">First Name *</label>
+              <input class="form-control" id="firstName" required type="text"/>
+              <div class="invalid-feedback">Please enter your first name</div>
+            </div>
+            <div class="col-md-6 mb-3">
+              <label class="form-label" for="lastName">Last Name *</label>
+              <input class="form-control" id="lastName" required type="text"/>
+              <div class="invalid-feedback">Please enter your last name</div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-6 mb-3">
+              <label class="form-label" for="ssn">Social Security Number (SSN) *</label>
+              <input class="form-control" id="ssn" pattern="\d{3}-\d{2}-\d{4}" placeholder="XXX-XX-XXXX" required type="text"/>
+              <div class="invalid-feedback">Valid SSN required (XXX-XX-XXXX)</div>
+            </div>
+            <div class="col-md-6 mb-3">
+              <label class="form-label">Date of Birth *</label>
+              <div class="row g-2">
+                <div class="col-4">
+                  <select class="form-select" id="birthMonth" required>
+                    <option value="">Month</option>
+                  </select>
+                </div>
+                <div class="col-4">
+                  <select class="form-select" id="birthDay" required>
+                    <option value="">Day</option>
+                  </select>
+                </div>
+                <div class="col-4">
+                  <select class="form-select" id="birthYear" required>
+                    <option value="">Year</option>
+                  </select>
+                </div>
+              </div>
+              <div class="invalid-feedback">Please select a valid date</div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-12 mb-3">
+              <label class="form-label" for="street">Street Address *</label>
+              <input class="form-control" id="street" required type="text"/>
+              <div class="invalid-feedback">Please enter your street address</div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-6 mb-3">
+              <label class="form-label" for="city">City *</label>
+              <input class="form-control" id="city" required type="text"/>
+              <div class="invalid-feedback">Please enter your city</div>
+            </div>
+            <div class="col-md-6 mb-3">
+              <label class="form-label" for="zip">Zip Code *</label>
+              <input class="form-control" id="zip" required type="text"/>
+              <div class="invalid-feedback">Please enter your zip code</div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-6 mb-3">
+              <label class="form-label" for="country">Country *</label>
+              <select class="form-select" id="country" required>
+                <option value="">Select Country</option>
+                <option value="US">United States</option>
+                <option value="CA">Canada</option>
+                <option value="GB">United Kingdom</option>
+                <option value="DE">Germany</option>
+              </select>
+              <div class="invalid-feedback">Please select a country</div>
+            </div>
+            <div class="col-md-6 mb-3" id="stateField" style="display: none;">
+              <label class="form-label" for="state">State *</label>
+              <select class="form-select" id="state">
+                <option value="">Select State</option>
+              </select>
+              <div class="invalid-feedback">Please select a state</div>
+            </div>
+          </div>
+          <div class="dual-citizenship-group">
+            <div class="form-check">
+              <input class="form-check-input" id="dualCitizenship" type="checkbox"/>
+              <label class="form-check-label" for="dualCitizenship">
+                I hold dual citizenship
+              </label>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-6 mb-3">
+              <label class="form-label" for="email">Email Address *</label>
+              <input class="form-control" id="email" required type="email"/>
+              <div class="invalid-feedback">Please enter a valid email</div>
+            </div>
+            <div class="col-md-6 mb-3">
+              <label class="form-label" for="phone">Phone Number *</label>
+              <input class="form-control" id="phone" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" placeholder="XXX-XXX-XXXX" required type="tel"/>
+              <div class="invalid-feedback">Please enter a valid phone number</div>
+            </div>
+          </div>
+          <div class="text-center mt-4">
+            <button class="btn btn-outline-primary me-3" onclick="showPreviousSection()" type="button">
+              <i class="fas fa-arrow-left me-2"></i>Back
+            </button>
+            <button class="btn btn-primary" id="btnToReview" type="submit">Continue</button>
+          </div>
+        </form>
+      </div>
+
+      <!-- Step 3: Review & Submit -->
+      <div class="form-section" id="reviewSubmit">
+        <h2 class="auth-header">Review & Submit</h2>
+        <div class="mb-4">
+          <h5 class="text-primary">Selected Accounts:</h5>
+          <ul id="selectedAccountsList" class="list-unstyled"></ul>
+        </div>
+        <div class="mb-4">
+          <h5 class="text-primary">Personal Information:</h5>
+          <div id="personalInfoReview" class="bg-light rounded p-3"></div>
+        </div>
+        <div class="form-check mb-4">
+          <input class="form-check-input" id="termsCheck" required type="checkbox"/>
+          <label class="form-check-label" for="termsCheck">
+            I agree to the <a href="#" class="text-primary">Terms</a> and <a href="#" class="text-primary">Privacy Policy</a>
+          </label>
+        </div>
+        <div class="text-center">
+          <button class="btn btn-outline-primary me-3" onclick="showPreviousSection()" type="button">
+            <i class="fas fa-arrow-left me-2"></i>Back
+          </button>
+          <button class="btn btn-primary" id="btnToEmailVerify" type="button">Continue</button>
+        </div>
+      </div>
+
+      <!-- Step 4: Email Verification -->
+      <div class="form-section" id="emailVerification">
+        <div class="text-center py-5">
+          <i class="fas fa-envelope fa-4x mb-4 text-primary"></i>
+          <h3 class="text-primary">Check Your Email</h3>
+          <p class="text-muted">We've sent a verification link to <strong id="userEmail" class="text-primary"></strong>.</p>
+          <div class="alert alert-success mt-4" style="display:none;" id="emailVerifiedAlert">
+            <i class="fas fa-check-circle me-2"></i>Email Verified!
+          </div>
+          <button class="btn btn-primary mt-3" id="btnToCredentials" type="button">Continue</button>
+        </div>
+      </div>
+
+      <!-- Step 5: Credentials Setup -->
+      <div class="form-section" id="credentials">
+        <h2 class="auth-header">Create Credentials</h2>
+        <form id="credentialForm" novalidate>
+          <div class="mb-4">
+            <label class="form-label" for="username">Username *</label>
+            <input class="form-control" id="username" required type="text"/>
+            <div class="invalid-feedback">Choose a username</div>
+          </div>
+          <div class="mb-4">
+            <label class="form-label" for="password">Password *</label>
+            <input class="form-control" id="password" required type="password"/>
+            <div class="invalid-feedback">Please enter a password</div>
+          </div>
+          <div class="text-center">
+            <button class="btn btn-outline-primary me-3" onclick="showPreviousSection()" type="button">
+              <i class="fas fa-arrow-left me-2"></i>Back
+            </button>
+            <button id="finishBtn" class="btn btn-success" type="submit">Finish</button>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <!-- Success Modal -->
+    <div class="success-modal" id="successModal">
+      <div class="success-content">
+        <div class="success-icon">
+          <i class="fas fa-check-circle"></i>
+        </div>
+        <h2 class="success-title">Welcome to High End Credit Union!</h2>
+        <p class="text-muted mb-4">Your account has been created successfully.</p>
+        
+        <div class="success-details">
+          <div class="success-detail">
+            <span class="detail-label">Full Name:</span>
+            <span class="detail-value" id="successFullName"></span>
+          </div>
+          <div class="success-detail">
+            <span class="detail-label">Email:</span>
+            <span class="detail-value" id="successEmail"></span>
+          </div>
+          <div class="success-detail">
+            <span class="detail-label">Phone:</span>
+            <span class="detail-value" id="successPhone"></span>
+          </div>
+          <div class="success-detail">
+            <span class="detail-label">Username:</span>
+            <span class="detail-value" id="successUsername"></span>
+          </div>
+          <div class="success-detail">
+            <span class="detail-label">Accounts:</span>
+            <span class="detail-value" id="successAccounts"></span>
+          </div>
+        </div>
+
+        <button class="btn btn-primary btn-lg w-100 mt-4" id="continueToDashboard">
+          Continue to Dashboard
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Bottom Links -->
+  <div class="bottom-links">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-3 mb-4">
+          <h5>Banking Services</h5>
+          <p>Checking Accounts</p>
+          <p>Savings Accounts</p>
+          <p>Credit Cards</p>
+          <p>Loans</p>
+          <p>Mortgages</p>
+        </div>
+        <div class="col-md-3 mb-4">
+          <h5>Digital Banking</h5>
+          <p>Mobile Banking</p>
+          <p>Online Bill Pay</p>
+          <p>Zelle Payments</p>
+          <p>Wire Transfers</p>
+          <p>Account Alerts</p>
+        </div>
+        <div class="col-md-3 mb-4">
+          <h5>About Us</h5>
+          <p>Our History</p>
+          <p>Leadership</p>
+          <p>Careers</p>
+          <p>Investor Relations</p>
+          <p>Community</p>
+        </div>
+        <div class="col-md-3 mb-4">
+          <h5>Support</h5>
+          <p>Contact Us</p>
+          <p>Branch Locator</p>
+          <p>ATM Network</p>
+          <p>FAQs</p>
+          <p>Security Center</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
+  <script src="js/register.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      AOS.init({ 
+        duration: 800, 
+        once: true,
+        offset: 100 
+      });
+    });
+  </script>
+</body>
+</html>

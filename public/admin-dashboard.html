@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+<meta name="referrer" content="no-referrer">
+<meta name="robots" content="noindex,nofollow">
+<meta content="default-src 'self';
+               script-src 'self' https://cdn.jsdelivr.net 'unsafe-inline';
+               style-src 'self' https://cdn.jsdelivr.net cdn.jsdelivr.net 'unsafe-inline';
+               img-src 'self' data:;
+               font-src 'self' cdn.jsdelivr.net;
+               object-src 'none';
+               base-uri 'self';
+               form-action 'self'" http-equiv="Content-Security-Policy"/>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Admin Dashboard</title>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"/>
+<link href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.5.0/css/all.min.css" rel="stylesheet"/>
+<link href="/css/admin.css" rel="stylesheet"/>
+
+<style>
+  /* Add missing CSS styles */
+  .btn-admin {
+    background-color: #00447C;
+    color: white;
+    border: 1px solid #C5A047;
+    padding: 0.5rem 1rem;
+    border-radius: 5px;
+    text-decoration: none;
+    display: inline-block;
+  }
+  
+  .btn-admin:hover {
+    background-color: #0066A1;
+    color: white;
+  }
+  
+  .dashboard-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 1rem;
+    margin-top: 2rem;
+  }
+  
+  .dashboard-card {
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 10px;
+    padding: 1.5rem;
+    backdrop-filter: blur(10px);
+  }
+  
+  .dashboard-header {
+    color: #C5A047;
+    border-bottom: 1px solid #C5A047;
+    padding-bottom: 0.5rem;
+    margin-bottom: 1rem;
+  }
+  
+  .text-accent {
+    color: #C5A047 !important;
+  }
+  
+  .balance-info {
+    font-size: 1.2rem;
+    margin: 1rem 0;
+    color: #C5A047;
+  }
+  
+  .pagination-controls {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+    margin-top: 1rem;
+  }
+  
+  .bottom-links {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 2rem;
+    margin-top: 3rem;
+    padding-top: 2rem;
+    border-top: 1px solid #C5A047;
+  }
+  
+  .bottom-links h5 {
+    color: #C5A047;
+    margin-bottom: 1rem;
+  }
+  
+  .bottom-links p {
+    margin: 0.3rem 0;
+    color: #E8EAED;
+  }
+</style>
+</head>
+<body>
+<div id="admin-alert" class="alert d-none text-center" role="alert" style="position: fixed; top: 20px; left: 50%; transform: translateX(-50%); z-index: 9999; width: 50%;"></div>
+
+<!-- Navigation Buttons -->
+<div class="d-flex justify-content-between mb-4 p-3">
+  <a class="btn btn-admin" href="/index.html">
+    <i class="fas fa-home me-2"></i>Home
+  </a>
+  <a class="btn btn-admin" href="/login.html">
+    <i class="fas fa-sign-out-alt me-2"></i>Log Out
+  </a>
+</div>
+
+<div class="mt-4">
+  <button id="runMigration" class="btn btn-danger">
+    🛠️ Fix Transactions (Admin Only)
+  </button>
+</div>
+
+<div class="container mx-auto p-5">
+  <h1 class="text-3xl font-bold text-center text-white">Admin Dashboard</h1>
+  
+  <!-- Manage Users -->
+  <div class="card bg-transparent border-secondary mb-4">
+    <div class="card-header bg-dark">
+      <h2 class="text-xl font-semibold text-white">Manage Users</h2>
+    </div>
+    <div class="card-body">
+      <table class="table table-dark table-striped">
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Account Numbers</th>
+            <th>Balances</th>
+            <th>Status</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody id="user-table">
+          <!-- Dynamic user rows will be added here -->
+        </tbody>
+      </table>
+    </div>
+  </div>
+  
+  <!-- User Actions -->
+  <div class="card bg-transparent border-secondary mb-4" id="user-actions">
+    <div class="card-header bg-dark">
+      <h2 class="text-xl font-semibold text-white">User Actions</h2>
+    </div>
+    <div class="card-body">
+      <form id="user-action-form">
+        <div class="mb-3">
+          <label class="form-label text-white">Select Action</label>
+          <select class="form-select bg-dark text-white" id="action">
+            <option value="update-balance">Update Balance</option>
+            <option value="suspend">Suspend</option>
+            <option value="change-password">Change Password</option>
+          </select>
+        </div>
+        <div class="mb-3">
+          <label class="form-label text-white">Account Number</label>
+          <input class="form-control bg-dark text-white" id="account-number-action" required type="text"/>
+        </div>
+        <div class="mb-3">
+          <label class="form-label text-white">Account Type</label>
+          <select class="form-select bg-dark text-white" id="account-type-action">
+            <option value="checking">Checking</option>
+            <option value="savings">Savings</option>
+          </select>
+        </div>
+        <div class="mb-3">
+          <label class="form-label text-white">Amount to Add or Deduct</label>
+          <input class="form-control bg-dark text-white" id="balance-amount" placeholder="Enter amount" type="number"/>
+        </div>
+        <button class="btn btn-admin" type="submit">Execute Action</button>
+      </form>
+    </div>
+  </div>
+  
+  <!-- Admin Dashboard Container -->
+  <div class="dashboard-container">
+    <!-- Admin Dashboard Card -->
+    <div class="dashboard-card">
+      <h2 class="dashboard-header text-center">Administrator Dashboard</h2>
+      <div class="balance-info text-center">
+        System Balance: <br/><strong>$2,458,763,829.47</strong>
+      </div>
+      
+      <!-- Fund Transfer Section -->
+      <div class="card bg-transparent border-secondary mb-4">
+        <div class="card-body">
+          <h5 class="card-title text-accent">Fund Transfer System</h5>
+          <form id="transferForm">
+            <div class="mb-3">
+              <label class="form-label text-white">Account Number</label>
+              <input class="form-control bg-dark text-white" id="accountNumber" required type="text"/>
+              <small id="accountNameDisplay" class="text-info"></small>
+            </div>
+            <div class="mb-3">
+              <label class="form-label text-white">Account Type</label>
+              <select class="form-select bg-dark text-white" id="accountType">
+                <option value="checking">Checking</option>
+                <option value="savings">Savings</option>
+              </select>
+            </div>
+            <div class="mb-3">
+              <label class="form-label text-white">Transfer Amount</label>
+              <input class="form-control bg-dark text-white" id="transferAmount" required type="number"/>
+            </div>
+            <div class="mb-3">
+              <label class="form-label text-white">Transfer Memo</label>
+              <textarea class="form-control bg-dark text-white" id="transferMemo" rows="2"></textarea>
+            </div>
+            <div class="d-grid">
+              <button class="btn btn-admin" type="submit">
+                <i class="fas fa-exchange-alt me-2"></i> Execute Transfer
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Transactions Card -->
+    <div class="dashboard-card">
+      <h5 class="dashboard-header">Transaction Monitor</h5>
+      <div class="table-responsive">
+        <table class="table table-dark table-striped">
+          <thead>
+            <tr>
+              <th>Date</th>
+              <th>Account</th>
+              <th>Type</th>
+              <th>Amount</th>
+              <th>Description</th>
+              <th>User</th>
+            </tr>
+          </thead>
+          <tbody id="transactionTable">
+            <!-- Transactions will be populated by JavaScript -->
+          </tbody>
+        </table>
+      </div>
+      <div class="pagination-controls">
+        <button class="btn btn-admin" id="previousPage">Previous</button>
+        <span id="pageInfo" class="text-white">Page 1 of 1</span>
+        <button class="btn btn-admin" id="nextPage">Next</button>
+      </div>
+    </div>
+    
+    <!-- Enhanced User Management Card -->
+    <div class="dashboard-card">
+      <h5 class="dashboard-header">User Accounts</h5>
+      <div class="mb-3">
+        <input class="form-control bg-dark text-white" id="searchInput" placeholder="Search users..." type="text"/>
+      </div>
+      <div class="table-responsive">
+        <table class="table table-dark table-striped">
+          <thead>
+            <tr>
+              <th>Name</th>
+              <th>Account</th>
+              <th>Type</th>
+              <th>Balance</th>
+              <th>Email</th>
+            </tr>
+          </thead>
+          <tbody id="userTable">
+            <!-- User data will be populated by JavaScript -->
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+  
+  <!-- Bottom Links Section -->
+  <div class="bottom-links">
+    <div>
+      <h5>Admin Tools</h5>
+      <p>User Management</p>
+      <p>Transaction Audit</p>
+      <p>System Settings</p>
+      <p>Security Controls</p>
+      <p>Reports</p>
+    </div>
+    <div>
+      <h5>Banking Services</h5>
+      <p>Account Management</p>
+      <p>Fund Transfers</p>
+      <p>Transaction Monitoring</p>
+      <p>Fraud Detection</p>
+      <p>Compliance</p>
+    </div>
+    <div>
+      <h5>Support</h5>
+      <p>Admin Documentation</p>
+      <p>System Status</p>
+      <p>Contact Engineers</p>
+      <p>Training Resources</p>
+      <p>Security Protocols</p>
+    </div>
+    <div>
+      <h5>Legal</h5>
+      <p>Privacy Policy</p>
+      <p>Terms of Service</p>
+      <p>Compliance Docs</p>
+      <p>Audit Trails</p>
+      <p>Regulatory Info</p>
+    </div>
+  </div>
+</div>
+
+<!-- Simple script loading -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script src="/js/admin.js"></script>
+</body>
+</html>

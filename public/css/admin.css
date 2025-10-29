@@ -1,0 +1,167 @@
+:root {
+  --primary-blue: #00447C;
+  --secondary-blue: #0066A1;
+  --accent-gold: #C5A047;
+  --off-white: #F8F9FC;
+  --slate-gray: #4A5C6C;
+  --overlay-dark: rgba(0, 0, 0, 0.6);
+  --transition-speed: 0.3s;
+}
+
+/* Global */
+body {
+  background: linear-gradient(135deg, var(--primary-blue), var(--secondary-blue));
+  color: var(--off-white);
+  font-family: 'Segoe UI', 'Arial', sans-serif;
+  margin: 0;
+  line-height: 1.6;
+}
+
+h1, h2, h3, h4, h5 {
+  font-weight: 600;
+  color: var(--accent-gold);
+}
+
+a {
+  color: var(--accent-gold);
+  text-decoration: none;
+  transition: color var(--transition-speed);
+}
+a:hover {
+  color: var(--off-white);
+}
+
+/* Cards */
+.card,
+.dashboard-card {
+  background-color: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 16px;
+  padding: 1.5rem;
+  margin-bottom: 2rem;
+  color: var(--off-white);
+  box-shadow: 0 8px 20px rgba(0,0,0,0.25);
+  transition: transform var(--transition-speed), box-shadow var(--transition-speed);
+}
+.card:hover,
+.dashboard-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 28px rgba(0,0,0,0.35);
+}
+
+/* Card Header */
+.card-header,
+.dashboard-header {
+  background: transparent;
+  font-weight: bold;
+  color: var(--accent-gold);
+  font-size: 1.3rem;
+  margin-bottom: 1rem;
+  border-bottom: 1px solid rgba(255,255,255,0.2);
+  padding-bottom: 0.5rem;
+}
+
+/* Forms */
+.form-control,
+.form-select {
+  background-color: rgba(255, 255, 255, 0.12);
+  color: var(--off-white);
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  border-radius: 8px;
+  padding: 0.65rem 1rem;
+  transition: border var(--transition-speed), background var(--transition-speed);
+}
+.form-control:focus,
+.form-select:focus {
+  background-color: rgba(255, 255, 255, 0.18);
+  border-color: var(--accent-gold);
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(197, 160, 71, 0.35);
+}
+.form-control::placeholder {
+  color: #aaa;
+}
+
+/* Buttons */
+.btn-admin {
+  background-color: var(--accent-gold);
+  color: var(--primary-blue);
+  border: none;
+  font-weight: bold;
+  border-radius: 8px;
+  padding: 0.6rem 1.2rem;
+  transition: background-color var(--transition-speed), color var(--transition-speed), transform var(--transition-speed);
+}
+.btn-admin:hover {
+  background-color: var(--primary-blue);
+  color: var(--off-white);
+  transform: scale(1.03);
+}
+.btn-admin:active {
+  transform: scale(0.97);
+}
+
+/* Tables */
+.table {
+  color: var(--off-white);
+  border-collapse: collapse;
+  width: 100%;
+}
+.table th,
+.table td {
+  padding: 0.75rem 1rem;
+  border-bottom: 1px solid rgba(255,255,255,0.15);
+}
+.table thead th {
+  color: var(--accent-gold);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  font-size: 0.9rem;
+  border-bottom: 2px solid var(--accent-gold);
+}
+.table tbody tr:hover {
+  background-color: rgba(255, 255, 255, 0.05);
+}
+
+/* Modal */
+.modal-content {
+  background-color: var(--overlay-dark);
+  color: var(--off-white);
+  border-radius: 12px;
+  padding: 1.5rem;
+}
+
+/* Footer / Bottom Links */
+.bottom-links {
+  background-color: rgba(0, 0, 0, 0.3);
+  padding: 2rem;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  border-top: 2px solid rgba(255, 255, 255, 0.15);
+  gap: 1rem;
+}
+.bottom-links h5 {
+  color: var(--accent-gold);
+  margin-bottom: 0.75rem;
+}
+.bottom-links div {
+  flex: 1 1 200px;
+}
+
+/* Pagination */
+.pagination-controls {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 1.25rem;
+}
+
+/* Alerts */
+#admin-alert {
+  background-color: var(--accent-gold);
+  color: var(--primary-blue);
+  font-weight: bold;
+  border-radius: 6px;
+  padding: 0.75rem 1rem;
+  margin-bottom: 1rem;
+}

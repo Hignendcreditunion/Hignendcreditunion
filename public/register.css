@@ -1,0 +1,178 @@
+    :root {
+      --primary-blue: #00447C;
+      --secondary-blue: #0066A1;
+      --accent-gold: #C5A047;
+      --off-white: #F8F9FC;
+      --slate-gray: #4A5C6C;
+    }
+
+    body {
+      background: linear-gradient(135deg, var(--primary-blue), var(--secondary-blue));
+      min-height: 100vh;
+      color: var(--off-white);
+      font-family: 'Arial', sans-serif;
+      margin: 0;
+      padding: 0;
+    }
+
+    .header {
+      background-color: var(--off-white);
+      padding: 1rem;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    }
+
+    .brand-title {
+      color: var(--primary-blue) !important;
+      font-weight: 700;
+      font-size: 1.8rem;
+    }
+
+    .motto {
+      color: var(--secondary-blue);
+      font-style: italic;
+      font-size: 0.9rem;
+    }
+
+    .auth-card {
+      background: rgba(0, 68, 124, 0.95);
+      border-radius: 15px;
+      padding: 2rem;
+      box-shadow: 0 12px 30px rgba(0, 0, 0, 0.3);
+      width: 100%;
+      max-width: 960px;
+      margin: 2rem auto;
+      border: 1px solid rgba(197, 160, 71, 0.3);
+    }
+
+    .auth-header {
+      color: var(--accent-gold);
+      font-weight: 600;
+      margin-bottom: 1.5rem;
+    }
+
+    .progress-steps {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 2rem;
+    }
+
+    .step {
+      text-align: center;
+      flex: 1;
+      color: var(--off-white);
+    }
+
+    .step-number {
+      background: rgba(248, 249, 252, 0.2);
+      border-radius: 50%;
+      width: 40px;
+      height: 40px;
+      margin: 0 auto 0.5rem;
+      line-height: 40px;
+    }
+
+    .step.active .step-number {
+      background: var(--accent-gold);
+      color: var(--primary-blue);
+    }
+
+    .form-section {
+      display: none;
+    }
+
+    .form-section.active {
+      display: block;
+    }
+
+    .account-selector {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 1.2rem;
+      margin: 2rem 0;
+    }
+
+    .account-card {
+      background: rgba(248, 249, 252, 0.1);
+      border: 2px solid transparent;
+      border-radius: 12px;
+      padding: 1.5rem 1rem;
+      text-align: center;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    .account-card:hover {
+      background: rgba(248, 249, 252, 0.15);
+      transform: translateY(-3px);
+    }
+
+    .account-card.selected {
+      border-color: var(--accent-gold);
+      background: rgba(197, 160, 71, 0.1);
+    }
+
+    .account-card i {
+      font-size: 2rem;
+      color: var(--accent-gold);
+      margin-bottom: 0.75rem;
+    }
+
+    .form-control, .form-select {
+      background: rgba(248, 249, 252, 0.1) !important;
+      border: 1px solid rgba(248, 249, 252, 0.3) !important;
+      border-radius: 8px;
+      padding: 0.8rem;
+      color: var(--off-white) !important;
+    }
+
+    .form-control:focus, .form-select:focus {
+      border-color: var(--accent-gold) !important;
+      box-shadow: 0 0 0 3px rgba(197, 160, 71, 0.2) !important;
+    }
+
+    .btn-primary {
+      background: var(--accent-gold);
+      color: var(--primary-blue);
+      border: none;
+      padding: 0.75rem 1.5rem;
+      font-weight: 600;
+    }
+
+    .dual-citizenship-group {
+      border-left: 3px solid var(--accent-gold);
+      padding-left: 1rem;
+      margin: 1rem 0;
+    }
+
+    .bottom-links {
+      background: rgba(255, 255, 255, 0.05);
+      border-radius: 12px;
+      padding: 3rem 2rem;
+      margin-top: 4rem;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 2rem;
+    }
+
+    .bottom-links h5 {
+      color: var(--accent-gold);
+      border-bottom: 2px solid var(--accent-gold);
+      padding-bottom: 0.75rem;
+      margin-bottom: 1rem;
+      font-size: 1.25rem;
+    }
+
+    .bottom-links p, .bottom-links a {
+      color: var(--off-white);
+      text-decoration: none;
+      margin: 0.5rem 0;
+    }
+
+    @media (max-width: 768px) {
+      .auth-card {
+        padding: 1rem;
+      }
+      .account-card {
+        padding: 1rem 0.5rem;
+      }
+    }

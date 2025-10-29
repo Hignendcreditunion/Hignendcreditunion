@@ -1,0 +1,500 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Security — High End Credit Union</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <link href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.5.0/css/all.min.css" rel="stylesheet" />
+  <link href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" rel="stylesheet" />
+  <style>
+    :root {
+      --primary-start: #0072ff;
+      --primary-end: #00c6ff;
+      --accent-gold: #F4B400;
+      --nav-dark: #081C3B;
+      --text-dark: #0F172A;
+      --muted: #6B7280;
+      --bg-soft: #F9FBFD;
+      --card-shadow: 0 12px 30px rgba(12,24,48,0.08);
+      --success: #28a745;
+      --warning: #ffc107;
+      --danger: #dc3545;
+    }
+    
+    body {
+      font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, Arial;
+      background: var(--bg-soft);
+      color: var(--text-dark);
+      margin: 0;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+    
+    .navbar {
+      background: #fff;
+      border-bottom: 1px solid rgba(8,28,59,0.04);
+      box-shadow: 0 6px 18px rgba(9,17,28,0.02);
+      padding: 1rem 0;
+    }
+    
+    .navbar-brand {
+      font-weight: 800;
+      color: var(--nav-dark);
+      font-size: 1.5rem;
+    }
+    
+    .nav-link {
+      color: var(--text-dark) !important;
+      font-weight: 600;
+      position: relative;
+    }
+    
+    .nav-link::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      bottom: -6px;
+      height: 3px;
+      width: 0;
+      background: linear-gradient(90deg, var(--accent-gold), var(--primary-end));
+      transition: width .25s;
+    }
+    
+    .nav-link:hover::after {
+      width: 100%;
+    }
+    
+    .hero {
+      background: linear-gradient(135deg, rgba(8,28,59,0.9), rgba(0,114,255,0.8)), 
+                  url('https://images.unsplash.com/photo-1550751827-4bd374c3f58b?auto=format&fit=crop&w=1600&q=80');
+      background-size: cover;
+      background-position: center;
+      color: #fff;
+      padding: 4rem 0;
+      text-align: center;
+      position: relative;
+    }
+    
+    .hero h1 {
+      font-size: 3rem;
+      font-weight: 800;
+      margin-bottom: 1.5rem;
+    }
+    
+    .lead {
+      color: rgba(255,255,255,0.9);
+      font-size: 1.25rem;
+      max-width: 700px;
+      margin: 0 auto 2rem;
+    }
+    
+    .section-title {
+      color: var(--nav-dark);
+      font-weight: 800;
+      margin-bottom: 2rem;
+      position: relative;
+      display: inline-block;
+    }
+    
+    .section-title::after {
+      content: '';
+      position: absolute;
+      bottom: -10px;
+      left: 0;
+      width: 60px;
+      height: 4px;
+      background: linear-gradient(90deg, var(--accent-gold), var(--primary-end));
+      border-radius: 2px;
+    }
+    
+    .security-card {
+      background: #fff;
+      border-radius: 16px;
+      padding: 2.5rem 1.5rem;
+      box-shadow: var(--card-shadow);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      text-align: center;
+      height: 100%;
+      border: none;
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .security-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 4px;
+      background: linear-gradient(90deg, var(--primary-start), var(--primary-end));
+    }
+    
+    .security-card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 20px 40px rgba(12,24,48,0.15);
+    }
+    
+    .security-icon {
+      font-size: 2.5rem;
+      color: var(--primary-end);
+      margin-bottom: 1.5rem;
+    }
+    
+    .tip-card {
+      background: #fff;
+      border-radius: 12px;
+      padding: 1.5rem;
+      box-shadow: var(--card-shadow);
+      margin-bottom: 1.5rem;
+      border-left: 4px solid var(--accent-gold);
+    }
+    
+    .tip-icon {
+      font-size: 1.5rem;
+      color: var(--accent-gold);
+      margin-right: 1rem;
+    }
+    
+    .alert-section {
+      background: linear-gradient(135deg, #fff9e6, #fff3cd);
+      border-radius: 16px;
+      padding: 2.5rem;
+      margin: 3rem 0;
+      border: 1px solid rgba(244, 180, 0, 0.3);
+    }
+    
+    .alert-icon {
+      font-size: 2.5rem;
+      color: var(--warning);
+      margin-bottom: 1.5rem;
+    }
+    
+    .btn-primary {
+      background: linear-gradient(90deg, var(--primary-start), var(--primary-end));
+      border: none;
+      padding: 0.75rem 1.5rem;
+      border-radius: 10px;
+      font-weight: 600;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 15px rgba(0,114,255,0.2);
+    }
+    
+    .btn-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(0,114,255,0.3);
+    }
+    
+    .btn-danger {
+      background: var(--danger);
+      border: none;
+      padding: 0.75rem 1.5rem;
+      border-radius: 10px;
+      font-weight: 600;
+      transition: all 0.3s ease;
+    }
+    
+    .btn-danger:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(220, 53, 69, 0.3);
+    }
+    
+    .small-muted {
+      color: var(--muted);
+    }
+    
+    footer {
+      background: #fff;
+      padding: 3rem 0;
+      border-top: 1px solid rgba(2,6,23,0.04);
+      margin-top: 4rem;
+    }
+    
+    .security-badge {
+      display: inline-flex;
+      align-items: center;
+      background: rgba(40, 167, 69, 0.1);
+      color: var(--success);
+      padding: 0.5rem 1rem;
+      border-radius: 20px;
+      font-size: 0.9rem;
+      font-weight: 600;
+      margin-bottom: 1.5rem;
+    }
+    
+    .security-badge i {
+      margin-right: 0.5rem;
+    }
+    
+    @media (max-width: 768px) {
+      .hero h1 {
+        font-size: 2.5rem;
+      }
+      
+      .hero {
+        padding: 3rem 0;
+      }
+      
+      .alert-section {
+        padding: 2rem 1.5rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <nav class="navbar navbar-expand-lg">
+    <div class="container">
+      <a class="navbar-brand" href="index.html">High End Credit Union</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navMenu">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navMenu">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+          <li class="nav-item"><a class="nav-link" href="our-story.html">Our Story</a></li>
+          <li class="nav-item"><a class="nav-link" href="careers.html">Careers</a></li>
+          <li class="nav-item"><a class="nav-link" href="help-center.html">Help Center</a></li>
+          <li class="nav-item"><a class="nav-link active" href="security.html">Security</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <header class="hero">
+    <div class="container">
+      <h1 data-aos="fade-up">Security & Privacy</h1>
+      <p class="lead" data-aos="fade-up" data-aos-delay="100">We take multi-layer security seriously to protect your accounts and data.</p>
+      <div class="security-badge" data-aos="fade-up" data-aos-delay="200">
+        <i class="fas fa-shield-alt"></i> FDIC Insured • 256-bit Encryption
+      </div>
+    </div>
+  </header>
+
+  <main class="container py-5">
+    <section class="mb-5">
+      <h2 class="section-title text-center mb-5">How We Protect Your Money</h2>
+      <div class="row g-4">
+        <div class="col-md-4" data-aos="fade-up" data-aos-delay="100">
+          <div class="security-card">
+            <div class="security-icon">
+              <i class="fas fa-lock"></i>
+            </div>
+            <h4>Bank-Grade Encryption</h4>
+            <p class="small-muted">All data is encrypted in transit and at rest using 256-bit SSL encryption, the same standard used by financial institutions worldwide.</p>
+          </div>
+        </div>
+        <div class="col-md-4" data-aos="fade-up" data-aos-delay="200">
+          <div class="security-card">
+            <div class="security-icon">
+              <i class="fas fa-user-shield"></i>
+            </div>
+            <h4>Multi-Factor Authentication</h4>
+            <p class="small-muted">Optional 2FA via SMS, authenticator apps, or biometric verification adds an extra layer of security to your sign-in process.</p>
+          </div>
+        </div>
+        <div class="col-md-4" data-aos="fade-up" data-aos-delay="300">
+          <div class="security-card">
+            <div class="security-icon">
+              <i class="fas fa-radar"></i>
+            </div>
+            <h4>Real-Time Fraud Monitoring</h4>
+            <p class="small-muted">Advanced AI systems monitor transactions 24/7 for suspicious activity and alert you immediately of any potential fraud.</p>
+          </div>
+        </div>
+        <div class="col-md-4" data-aos="fade-up" data-aos-delay="100">
+          <div class="security-card">
+            <div class="security-icon">
+              <i class="fas fa-fingerprint"></i>
+            </div>
+            <h4>Biometric Access</h4>
+            <p class="small-muted">Use fingerprint or facial recognition for quick, secure access to our mobile app without compromising security.</p>
+          </div>
+        </div>
+        <div class="col-md-4" data-aos="fade-up" data-aos-delay="200">
+          <div class="security-card">
+            <div class="security-icon">
+              <i class="fas fa-shield-check"></i>
+            </div>
+            <h4>FDIC Insurance</h4>
+            <p class="small-muted">All deposit accounts are FDIC insured up to $250,000 per depositor, providing an additional layer of protection for your funds.</p>
+          </div>
+        </div>
+        <div class="col-md-4" data-aos="fade-up" data-aos-delay="300">
+          <div class="security-card">
+            <div class="security-icon">
+              <i class="fas fa-history"></i>
+            </div>
+            <h4>Transaction Verification</h4>
+            <p class="small-muted">We verify unusual transactions through multiple channels and provide detailed transaction histories for your review.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="mb-5">
+      <h2 class="section-title mb-4">Security Best Practices</h2>
+      <p class="mb-4 small-muted">Protecting your account is a shared responsibility. Follow these guidelines to keep your information secure.</p>
+      
+      <div class="tip-card" data-aos="fade-right">
+        <div class="d-flex align-items-start">
+          <div class="tip-icon">
+            <i class="fas fa-key"></i>
+          </div>
+          <div>
+            <h5>Use Strong, Unique Passwords</h5>
+            <p class="small-muted mb-0">Create passwords with at least 12 characters including uppercase, lowercase, numbers, and symbols. Never reuse passwords across different sites.</p>
+          </div>
+        </div>
+      </div>
+      
+      <div class="tip-card" data-aos="fade-right" data-aos-delay="100">
+        <div class="d-flex align-items-start">
+          <div class="tip-icon">
+            <i class="fas fa-mobile-alt"></i>
+          </div>
+          <div>
+            <h5>Enable Two-Factor Authentication</h5>
+            <p class="small-muted mb-0">Add an extra layer of security by enabling 2FA in your account settings. We recommend using an authenticator app for the highest security.</p>
+          </div>
+        </div>
+      </div>
+      
+      <div class="tip-card" data-aos="fade-right" data-aos-delay="200">
+        <div class="d-flex align-items-start">
+          <div class="tip-icon">
+            <i class="fas fa-envelope"></i>
+          </div>
+          <div>
+            <h5>Be Wary of Phishing Attempts</h5>
+            <p class="small-muted mb-0">We will never ask for your password via email or text. Verify suspicious messages by contacting support directly at support@highendcu.com.</p>
+          </div>
+        </div>
+      </div>
+      
+      <div class="tip-card" data-aos="fade-right" data-aos-delay="300">
+        <div class="d-flex align-items-start">
+          <div class="tip-icon">
+            <i class="fas fa-wifi"></i>
+          </div>
+          <div>
+            <h5>Use Secure Networks</h5>
+            <p class="small-muted mb-0">Avoid accessing your financial accounts on public Wi-Fi. Use a VPN if you must access your account from an untrusted network.</p>
+          </div>
+        </div>
+      </div>
+      
+      <div class="tip-card" data-aos="fade-right" data-aos-delay="400">
+        <div class="d-flex align-items-start">
+          <div class="tip-icon">
+            <i class="fas fa-bell"></i>
+          </div>
+          <div>
+            <h5>Monitor Account Activity</h5>
+            <p class="small-muted mb-0">Regularly review your transaction history and set up account alerts for large transactions, low balances, or suspicious activity.</p>
+          </div>
+        </div>
+      </div>
+      
+      <div class="tip-card" data-aos="fade-right" data-aos-delay="500">
+        <div class="d-flex align-items-start">
+          <div class="tip-icon">
+            <i class="fas fa-shield-alt"></i>
+          </div>
+          <div>
+            <h5>Keep Software Updated</h5>
+            <p class="small-muted mb-0">Ensure your operating system, browser, and antivirus software are always up to date with the latest security patches.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="alert-section text-center" data-aos="fade-up">
+      <div class="alert-icon">
+        <i class="fas fa-exclamation-triangle"></i>
+      </div>
+      <h3>Suspect Fraudulent Activity?</h3>
+      <p class="mb-4">If you notice unauthorized transactions or suspect your account has been compromised, take immediate action.</p>
+      <div class="d-flex justify-content-center gap-3 flex-wrap">
+        <a href="tel:+18025724519" class="btn btn-danger btn-lg">
+          <i class="fas fa-phone me-2"></i>Call Now: +1-802-572-4519
+        </a>
+        <a href="mailto:support@highendcu.com" class="btn btn-primary btn-lg">
+          <i class="fas fa-envelope me-2"></i>Email Support
+        </a>
+      </div>
+      <p class="small-muted mt-3">Our security team is available 24/7 to assist with urgent matters.</p>
+    </section>
+
+    <section class="mb-4">
+      <h2 class="section-title mb-4">Privacy Commitment</h2>
+      <div class="row">
+        <div class="col-md-8" data-aos="fade-right">
+          <p>We are committed to protecting your privacy and personal information. Our privacy practices include:</p>
+          <ul>
+            <li>We never sell your personal information to third parties</li>
+            <li>We collect only the information necessary to provide our services</li>
+            <li>You have control over your communication preferences</li>
+            <li>We comply with all applicable privacy laws and regulations</li>
+            <li>Regular security audits and penetration testing</li>
+          </ul>
+          <p class="small-muted">For more details, please review our full <a href="#">Privacy Policy</a> and <a href="#">Terms of Service</a>.</p>
+        </div>
+        <div class="col-md-4" data-aos="fade-left">
+          <div class="security-card">
+            <div class="security-icon">
+              <i class="fas fa-user-lock"></i>
+            </div>
+            <h5>Your Privacy Rights</h5>
+            <p class="small-muted">You have the right to access, correct, or delete your personal information. Contact us to exercise these rights.</p>
+            <a href="help-center.html" class="btn btn-outline-primary btn-sm">Learn More</a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container">
+      <div class="row gy-4">
+        <div class="col-md-4">
+          <h5>High End Credit Union</h5>
+          <p class="small-muted">Your Financial Success, Our Priority</p>
+        </div>
+        <div class="col-md-4">
+          <h6>Quick Links</h6>
+          <div class="d-flex flex-column">
+            <a href="index.html" class="small-muted mb-1">Home</a>
+            <a href="our-story.html" class="small-muted mb-1">Our Story</a>
+            <a href="careers.html" class="small-muted mb-1">Careers</a>
+            <a href="help-center.html" class="small-muted mb-1">Help Center</a>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <h6>Security Resources</h6>
+          <div class="d-flex flex-column">
+            <a href="help-center.html" class="small-muted mb-1">Report Suspicious Activity</a>
+            <a href="help-center.html" class="small-muted mb-1">Identity Theft Resources</a>
+            <a href="help-center.html" class="small-muted mb-1">Security Alerts</a>
+            <a href="#" class="small-muted mb-1">Privacy Policy</a>
+          </div>
+        </div>
+      </div>
+      <div class="text-center mt-4 pt-3 border-top">
+        <span class="small-muted">© 2025 High End Credit Union. All rights reserved. Member FDIC.</span>
+      </div>
+    </div>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
+  <script>
+    // Initialize AOS animations
+    AOS.init({
+      duration: 800,
+      once: true,
+      offset: 100
+    });
+  </script>
+</body>
+</html>
