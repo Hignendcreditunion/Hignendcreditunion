@@ -1233,6 +1233,141 @@ async function getCurrentBitcoinPrice() {
   return 45000; // Example price
 }
 
+// Password Reset Routes
+
+// Verify user for password reset
+app.post("/api/verify-user", dbErrorHandler(async (req, res) => {
+  const { email, username } = req.body;
+  
+  if (!email || !username) {
+    return res.status(400).json({ success: false, message: "Email and username are required" });
+  }
+
+  const user = await User.findOne({ 
+    email: email.toLowerCase(), 
+    username: username 
+  }).select('-password');
+
+  if (!user) {
+    return res.status(404).json({ success: false, message: "User not found. Please check your credentials." });
+  }
+
+  res.json({ 
+    success: true, 
+    message: "User verified successfully",
+    user: {
+      _id: user._id,
+      name: user.name,
+      email: user.email,
+      username: user.username
+    }
+  });
+}));
+
+// Reset password
+app.post("/api/reset-password", dbErrorHandler(async (req, res) => {
+  const { userId, newPassword } = req.body;
+  
+  if (!userId || !newPassword) {
+    return res.status(400).json({ success: false, message: "User ID and new password are required" });
+  }
+
+  if (newPassword.length < 6) {
+    return res.status(400).json({ success: false, message: "Password must be at least 6 characters" });
+  }
+
+  const user = await User.findById(userId);
+  if (!user) {
+    return res.status(404).json({ success: false, message: "User not found" });
+  }
+
+  // Hash new password
+  const hashedPassword = await bcrypt.hash(newPassword, 12);
+  user.password = hashedPassword;
+  
+  await user.save();
+
+  res.json({ 
+    success: true, 
+    message: "Password reset successfully" 
+  });
+}));
+
+app.post("/api/verify-user", dbErrorHandler(async (req, res) => {
+  const { email, username } = req.body;
+  
+  console.log("Verifying user for password reset:", { email, username });
+  
+  if (!email || !username) {
+    return res.status(400).json({ success: false, message: "Email and username are required" });
+  }
+
+  try {
+    const user = await User.findOne({ 
+      email: email.toLowerCase(), 
+      username: username 
+    }).select('-password');
+
+    if (!user) {
+      return res.status(404).json({ success: false, message: "User not found. Please check your credentials." });
+    }
+
+    console.log("User verified successfully:", user._id);
+    
+    res.json({ 
+      success: true, 
+      message: "User verified successfully",
+      user: {
+        _id: user._id,
+        name: user.name,
+        email: user.email,
+        username: user.username
+      }
+    });
+  } catch (error) {
+    console.error("User verification error:", error);
+    res.status(500).json({ success: false, message: "Server error during verification" });
+  }
+}));
+
+// Reset password
+app.post("/api/reset-password", dbErrorHandler(async (req, res) => {
+  const { userId, newPassword } = req.body;
+  
+  console.log("Resetting password for user:", userId);
+  
+  if (!userId || !newPassword) {
+    return res.status(400).json({ success: false, message: "User ID and new password are required" });
+  }
+
+  if (newPassword.length < 6) {
+    return res.status(400).json({ success: false, message: "Password must be at least 6 characters" });
+  }
+
+  try {
+    const user = await User.findById(userId);
+    if (!user) {
+      return res.status(404).json({ success: false, message: "User not found" });
+    }
+
+    // Hash new password
+    const hashedPassword = await bcrypt.hash(newPassword, 12);
+    user.password = hashedPassword;
+    
+    await user.save();
+
+    console.log("Password reset successfully for user:", userId);
+    
+    res.json({ 
+      success: true, 
+      message: "Password reset successfully" 
+    });
+  } catch (error) {
+    console.error("Password reset error:", error);
+    res.status(500).json({ success: false, message: "Server error during password reset" });
+  }
+}));
+
 // ------------------ View routes ------------------
 app.get("/", (req, res) => res.sendFile(path.join(__dirname, "public/index.html")));
 app.get("/register", (req, res) => res.sendFile(path.join(__dirname, "public/register.html")));
