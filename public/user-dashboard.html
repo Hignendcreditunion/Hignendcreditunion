@@ -462,53 +462,54 @@
       </div>
     </div>
 
-    <!-- Right Column - Sidebar -->
-    <div class="col-lg-4">
-      <!-- Account Details -->
-      <div class="account-details-card mb-4">
-        <div class="card-header">
-          <h5 class="mb-0"><i class="fas fa-info-circle me-2"></i>Account Details</h5>
+<!-- Right Column - Sidebar -->
+<div class="col-lg-4">
+  <!-- Account Details Card -->
+  <div class="account-details-card mb-4">
+    <div class="card-header">
+      <h5 class="mb-0"><i class="fas fa-info-circle me-2"></i>Account Details</h5>
+    </div>
+    <div class="card-body">
+      <!-- Replace the static account details with these dynamic ones -->
+      <div class="account-detail-section">
+        <h6 class="mt-3 mb-2">Checking Account</h6>
+        <div class="account-detail-row">
+          <span class="account-detail-label">Account Number</span>
+          <span class="account-detail-value" id="checkingAccDisplay">**** **** **** 9472</span>
         </div>
-        <div class="card-body">
-          <div class="account-detail-section">
-            <h6 class="mt-3 mb-2">Checking Account</h6>
-            <div class="account-detail-row">
-              <span class="account-detail-label">Account Number</span>
-              <span class="account-detail-value">**** **** **** 9472</span>
-            </div>
-            <div class="account-detail-row">
-              <span class="account-detail-label">Routing Number</span>
-              <span class="account-detail-value">836284645</span>
-            </div>
-            <div class="account-detail-row">
-              <span class="account-detail-label">Account Type</span>
-              <span class="account-detail-value">Personal Checking</span>
-            </div>
-          </div>
-          
-          <div class="account-detail-section">
-            <h6 class="mt-3 mb-2">Savings Account</h6>
-            <div class="account-detail-row">
-              <span class="account-detail-label">Account Number</span>
-              <span class="account-detail-value">**** **** **** 8749</span>
-            </div>
-            <div class="account-detail-row">
-              <span class="account-detail-label">Routing Number</span>
-              <span class="account-detail-value">836284645</span>
-            </div>
-            <div class="account-detail-row">
-              <span class="account-detail-label">Account Type</span>
-              <span class="account-detail-value">High-Yield Savings</span>
-            </div>
-          </div>
-          
-          <div class="mt-3">
-            <button class="btn btn-outline-primary btn-sm w-100" onclick="showFullAccountNumbers()">
-              <i class="fas fa-eye me-1"></i>Show Full Account Numbers
-            </button>
-          </div>
+        <div class="account-detail-row">
+          <span class="account-detail-label">Routing Number</span>
+          <span class="account-detail-value">836284645</span>
+        </div>
+        <div class="account-detail-row">
+          <span class="account-detail-label">Account Type</span>
+          <span class="account-detail-value">Personal Checking</span>
         </div>
       </div>
+
+      <div class="account-detail-section">
+        <h6 class="mt-3 mb-2">Savings Account</h6>
+        <div class="account-detail-row">
+          <span class="account-detail-label">Account Number</span>
+          <span class="account-detail-value" id="savingsAccDisplay">**** **** **** 8749</span>
+        </div>
+        <div class="account-detail-row">
+          <span class="account-detail-label">Routing Number</span>
+          <span class="account-detail-value">836284645</span>
+        </div>
+        <div class="account-detail-row">
+          <span class="account-detail-label">Account Type</span>
+          <span class="account-detail-value">High-Yield Savings</span>
+        </div>
+      </div>
+      
+      <div class="mt-3">
+        <button class="btn btn-outline-primary btn-sm w-100" onclick="showFullAccountNumbers()">
+          <i class="fas fa-eye me-1"></i>Show Full Account Numbers
+        </button>
+      </div>
+    </div>
+  </div>
 
       <!-- Investment Performance -->
       <div class="investment-card mb-4">

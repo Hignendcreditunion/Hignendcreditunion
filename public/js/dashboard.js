@@ -165,8 +165,8 @@ class Dashboard {
             name: 'Alex Johnson',
             totalBalance: 12570.42,
             accounts: {
-                checking: { balance: 5420.75, accountNumber: '9472' },
-                savings: { balance: 5300.67, accountNumber: '8749' },
+                checking: { balance: 5420.75, accountNumber: '7251160814' },
+                savings: { balance: 5300.67, accountNumber: '9385961659' },
                 bitcoin: { balance: 0.0425, usdValue: 1850.00 }
             }
         };
@@ -201,6 +201,32 @@ updateUI() {
         document.getElementById('savingsBalance').textContent = this.formatCurrency(this.accounts.savings.balance);
         document.getElementById('bitcoinBalance').textContent = this.accounts.bitcoin.balance.toFixed(6) + ' BTC';
         document.getElementById('bitcoinValue').textContent = this.formatCurrency(this.accounts.bitcoin.usdValue);
+        
+        // ✅ FIXED: Get account numbers from user data
+        const checkingAccNum = this.accounts.checking?.accountNumber;
+        const savingsAccNum = this.accounts.savings?.accountNumber;
+        
+        // ✅ UPDATE: Show partial account numbers in account cards
+        const checkingAccElement = document.getElementById('checkingAccountNumber');
+        const savingsAccElement = document.getElementById('savingsAccountNumber');
+        
+        if (checkingAccElement && checkingAccNum) {
+            checkingAccElement.textContent = `•••• ${checkingAccNum.slice(-4)}`;
+        }
+        if (savingsAccElement && savingsAccNum) {
+            savingsAccElement.textContent = `•••• ${savingsAccNum.slice(-4)}`;
+        }
+        
+        // ✅ UPDATE: Show partial account numbers in modal display
+        const checkingAccDisplay = document.getElementById('checkingAccDisplay');
+        const savingsAccDisplay = document.getElementById('savingsAccDisplay');
+
+        if (checkingAccDisplay && checkingAccNum) {
+            checkingAccDisplay.textContent = `**** **** **** ${checkingAccNum.slice(-4)}`;
+        }
+        if (savingsAccDisplay && savingsAccNum) {
+            savingsAccDisplay.textContent = `**** **** **** ${savingsAccNum.slice(-4)}`;
+        }
         
         // Update Bitcoin price (mock)
         document.getElementById('btcPrice').textContent = this.formatCurrency(43529.41);
@@ -566,7 +592,48 @@ async handleInternalTransfer(event) {
 
 // Make utility functions globally available
 window.showFullAccountNumbers = function() {
-    alert("For security reasons, please contact customer service to view your full account numbers.");
+    const dashboard = window.dashboard;
+    if (!dashboard || !dashboard.userData) {
+        alert("Please wait while we load your account information...");
+        return;
+    }
+
+    const checkingAcc = dashboard.userData.accounts?.checking;
+    const savingsAcc = dashboard.userData.accounts?.savings;
+    
+    if (!checkingAcc || !savingsAcc) {
+        alert("Account information not available. Please try again later.");
+        return;
+    }
+
+    const accountInfo = `
+🏦 **High End Credit Union - Account Details**
+
+💰 **Checking Account:**
+   Account Number: ${checkingAcc.accountNumber || 'Not available'}
+   Routing Number: ${checkingAcc.routingNumber || '836284645'}
+   Current Balance: ${dashboard.formatCurrency(checkingAcc.balance || 0)}
+
+💰 **Savings Account:**
+   Account Number: ${savingsAcc.accountNumber || 'Not available'}
+   Routing Number: ${savingsAcc.routingNumber || '836284645'}
+   Current Balance: ${dashboard.formatCurrency(savingsAcc.balance || 0)}
+
+📝 **Important Information:**
+• Keep your account numbers secure
+• Routing number: 836284645
+• For wire transfers, use both numbers
+• Contact support for assistance
+
+Click OK to copy Checking Account details to clipboard.
+    `;
+
+    if (confirm(accountInfo)) {
+        const textToCopy = `Account: ${checkingAcc.accountNumber}\nRouting: ${checkingAcc.routingNumber || '836284645'}`;
+        navigator.clipboard.writeText(textToCopy)
+            .then(() => alert('Checking account details copied to clipboard!'))
+            .catch(() => alert('Failed to copy to clipboard'));
+    }
 };
 
 window.copyBtcAddress = function() {
