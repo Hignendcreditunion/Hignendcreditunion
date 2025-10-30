@@ -224,13 +224,15 @@
       font-size: 1rem;
       margin-bottom: 0.75rem;
     }
-    footer ul {
-      padding-left: 0;
-      list-style: none;
-      font-size: 0.85rem;
+    footer a {
+      color: #fff;
+      text-decoration: none;
+      display: block;
+      margin-bottom: 0.3rem;
+      transition: color 0.3s ease;
     }
-    footer ul li {
-      margin-bottom: 0.4rem;
+    footer a:hover {
+      color: var(--accent-gold);
     }
 
     /* Responsive */
@@ -462,54 +464,53 @@
       </div>
     </div>
 
-<!-- Right Column - Sidebar -->
-<div class="col-lg-4">
-  <!-- Account Details Card -->
-  <div class="account-details-card mb-4">
-    <div class="card-header">
-      <h5 class="mb-0"><i class="fas fa-info-circle me-2"></i>Account Details</h5>
-    </div>
-    <div class="card-body">
-      <!-- Replace the static account details with these dynamic ones -->
-      <div class="account-detail-section">
-        <h6 class="mt-3 mb-2">Checking Account</h6>
-        <div class="account-detail-row">
-          <span class="account-detail-label">Account Number</span>
-          <span class="account-detail-value" id="checkingAccDisplay">**** **** **** 9472</span>
+    <!-- Right Column - Sidebar -->
+    <div class="col-lg-4">
+      <!-- Account Details Card -->
+      <div class="account-details-card mb-4">
+        <div class="card-header">
+          <h5 class="mb-0"><i class="fas fa-info-circle me-2"></i>Account Details</h5>
         </div>
-        <div class="account-detail-row">
-          <span class="account-detail-label">Routing Number</span>
-          <span class="account-detail-value">836284645</span>
-        </div>
-        <div class="account-detail-row">
-          <span class="account-detail-label">Account Type</span>
-          <span class="account-detail-value">Personal Checking</span>
-        </div>
-      </div>
+        <div class="card-body">
+          <div class="account-detail-section">
+            <h6 class="mt-3 mb-2">Checking Account</h6>
+            <div class="account-detail-row">
+              <span class="account-detail-label">Account Number</span>
+              <span class="account-detail-value" id="checkingAccDisplay">**** **** **** 9472</span>
+            </div>
+            <div class="account-detail-row">
+              <span class="account-detail-label">Routing Number</span>
+              <span class="account-detail-value">836284645</span>
+            </div>
+            <div class="account-detail-row">
+              <span class="account-detail-label">Account Type</span>
+              <span class="account-detail-value">Personal Checking</span>
+            </div>
+          </div>
 
-      <div class="account-detail-section">
-        <h6 class="mt-3 mb-2">Savings Account</h6>
-        <div class="account-detail-row">
-          <span class="account-detail-label">Account Number</span>
-          <span class="account-detail-value" id="savingsAccDisplay">**** **** **** 8749</span>
-        </div>
-        <div class="account-detail-row">
-          <span class="account-detail-label">Routing Number</span>
-          <span class="account-detail-value">836284645</span>
-        </div>
-        <div class="account-detail-row">
-          <span class="account-detail-label">Account Type</span>
-          <span class="account-detail-value">High-Yield Savings</span>
+          <div class="account-detail-section">
+            <h6 class="mt-3 mb-2">Savings Account</h6>
+            <div class="account-detail-row">
+              <span class="account-detail-label">Account Number</span>
+              <span class="account-detail-value" id="savingsAccDisplay">**** **** **** 8749</span>
+            </div>
+            <div class="account-detail-row">
+              <span class="account-detail-label">Routing Number</span>
+              <span class="account-detail-value">836284645</span>
+            </div>
+            <div class="account-detail-row">
+              <span class="account-detail-label">Account Type</span>
+              <span class="account-detail-value">High-Yield Savings</span>
+            </div>
+          </div>
+          
+          <div class="mt-3">
+            <button class="btn btn-outline-primary btn-sm w-100" onclick="showFullAccountNumbers()">
+              <i class="fas fa-eye me-1"></i>Show Full Account Numbers
+            </button>
+          </div>
         </div>
       </div>
-      
-      <div class="mt-3">
-        <button class="btn btn-outline-primary btn-sm w-100" onclick="showFullAccountNumbers()">
-          <i class="fas fa-eye me-1"></i>Show Full Account Numbers
-        </button>
-      </div>
-    </div>
-  </div>
 
       <!-- Investment Performance -->
       <div class="investment-card mb-4">
@@ -851,11 +852,27 @@
 <!-- FOOTER -->
 <footer>
   <div class="container">
-    <div class="row">
-      <div class="col-md-3"><h5>Banking Services</h5><ul><li>Checking Accounts</li><li>Savings Accounts</li><li>Credit Cards</li><li>Loans</li><li>Mortgages</li></ul></div>
-      <div class="col-md-3"><h5>Digital Banking</h5><ul><li>Mobile Banking</li><li>Online Bill Pay</li><li>Zelle Payments</li><li>Wire Transfers</li><li>Account Alerts</li></ul></div>
-      <div class="col-md-3"><h5>About Us</h5><ul><li>Our History</li><li>Leadership</li><li>Careers</li><li>Community</li></ul></div>
-      <div class="col-md-3"><h5>Support</h5><ul><li>Contact Us</li><li>Branch Locator</li><li>ATM Network</li><li>FAQs</li><li>Security Center</li></ul></div>
+    <div class="row gy-3">
+      <div class="col-md-3">
+        <h5>Banking</h5>
+        <a href="register.html#checking">Checking</a>
+        <a href="register.html#savings">Savings</a>
+      </div>
+      <div class="col-md-3">
+        <h5>Loans</h5>
+        <a href="register.html#auto">Auto</a>
+        <a href="register.html#personal">Personal</a>
+      </div>
+      <div class="col-md-3">
+        <h5>Company</h5>
+        <a href="our-story.html">Our Story</a>
+        <a href="careers.html">Careers</a>
+      </div>
+      <div class="col-md-3">
+        <h5>Help</h5>
+        <a href="help-center.html">Help Center</a>
+        <a href="security.html">Security</a>
+      </div>
     </div>
     <div class="text-center mt-4 small">© 2025 High End Credit Union. All rights reserved.</div>
   </div>
@@ -880,7 +897,6 @@
     document.getElementById('btcPrice').textContent = '$43,529.41';
     document.getElementById('portfolioValue').textContent = '$1,850.00';
   });
-</script>
 </script>
 <script src="js/dashboard.js"></script>
 </body>
